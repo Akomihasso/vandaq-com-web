@@ -1,0 +1,127 @@
+const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "https://vandaq-x.com";
+
+export default function Hero() {
+  return (
+    <section className="relative overflow-hidden hero-gradient">
+      <div className="absolute inset-0 grid-dot-bg opacity-70 pointer-events-none" aria-hidden />
+      <div className="container-narrow pt-16 md:pt-24 pb-8 md:pb-16 relative">
+        <div className="max-w-4xl mx-auto text-center space-y-7 animate-fade-in-up">
+          <div className="chip mx-auto">
+            <span className="relative inline-flex w-2 h-2">
+              <span className="absolute inline-flex w-full h-full rounded-full bg-primary animate-pulse-ring" />
+              <span className="relative inline-flex w-2 h-2 rounded-full bg-primary" />
+            </span>
+            Dijital İkiz Teknolojisi Aktif
+          </div>
+
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.05]">
+            Dış dünya değişiyor.
+            <br />
+            <span className="bg-gradient-to-r from-primary via-primary-container to-secondary bg-clip-text text-transparent">
+              Şirketiniz için ne anlama geldiğini biliyor musunuz?
+            </span>
+          </h1>
+
+          <p className="text-lg md:text-xl text-on-surface-variant max-w-2xl mx-auto leading-relaxed">
+            VANDAQ; para piyasaları, enerji, jeopolitik, iklim ve regülasyon
+            sinyallerini <strong className="text-on-surface">şirketinizin dijital ikizi</strong> üzerinde
+            işler; genel yorumlar yerine <em>size özel</em> sayısal etki ve strateji üretir.
+          </p>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+            <a href={APP_URL} target="_blank" rel="noopener noreferrer" className="btn-primary">
+              15 Gün Ücretsiz Dene
+              <ArrowIcon />
+            </a>
+            <a href="#nasil-calisir" className="btn-ghost">
+              <PlayIcon />
+              Nasıl Çalıştığını İzle
+            </a>
+          </div>
+
+          <p className="text-xs text-on-surface-variant/70 pt-1">
+            Kredi kartı gerekmez • KVKK/GDPR uyumlu • İstediğiniz zaman iptal
+          </p>
+        </div>
+
+        {/* Video showcase card */}
+        <div className="mt-14 md:mt-20 hero-video-wrap aspect-[16/9] max-w-6xl mx-auto animate-fade-in-up">
+          <video
+            src="/hero.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            poster="/ornek-tasarim.png"
+          />
+          <div className="content h-full w-full flex flex-col justify-between p-6 md:p-10 text-white">
+            <div className="flex items-center justify-between">
+              <div className="chip !bg-white/10 !border-white/20 !text-white">
+                <span className="w-2 h-2 rounded-full bg-success animate-pulse" />
+                Canlı Sinyal Akışı
+              </div>
+              <div className="hidden sm:flex items-center gap-2 text-white/70 text-xs">
+                <span className="w-2.5 h-2.5 rounded-full bg-danger/70" />
+                <span className="w-2.5 h-2.5 rounded-full bg-warning/70" />
+                <span className="w-2.5 h-2.5 rounded-full bg-success/70" />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+              <KpiTile label="CVI" value="0.62" delta="−28%" positive />
+              <KpiTile label="EDI" value="0.44" delta="−0.9%" positive />
+              <KpiTile label="TDI" value="0.51" delta="+3.2%" />
+              <KpiTile label="GRI" value="0.37" delta="+5.1%" warn />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function KpiTile({
+  label,
+  value,
+  delta,
+  positive,
+  warn,
+}: {
+  label: string;
+  value: string;
+  delta: string;
+  positive?: boolean;
+  warn?: boolean;
+}) {
+  const deltaColor = positive
+    ? "text-success"
+    : warn
+    ? "text-warning"
+    : "text-inverse-primary";
+  return (
+    <div className="rounded-2xl bg-white/10 backdrop-blur-md border border-white/15 px-4 py-3">
+      <div className="flex items-center justify-between">
+        <span className="text-[10px] uppercase tracking-[0.14em] text-white/70">{label}</span>
+        <span className={`text-[11px] font-semibold ${deltaColor}`}>{delta}</span>
+      </div>
+      <div className="text-2xl md:text-3xl font-black mt-1">{value}</div>
+    </div>
+  );
+}
+
+function ArrowIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden>
+      <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function PlayIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+      <path d="M8 5v14l11-7z" />
+    </svg>
+  );
+}
