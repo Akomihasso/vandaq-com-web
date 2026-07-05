@@ -60,11 +60,24 @@ export async function POST(req: Request) {
     }
   }
 
-  // 2) Email notification via Resend (optional)
+  // 2) Email notification via Resend
+  // Defaults keep delivery working even if env vars are missing or misconfigured.
+  const DEFAULT_TO = [
+    "abone2026hasan@gmail.com",
+    "hasan.demirkiran@kordinat.com.tr",
+    "emir.demirkiran@kordinat.com.tr",
+  ];
+  const DEFAULT_FROM = "VANDAQ <bildirim@vandaq-x.com>";
+
   const resendKey = process.env.RESEND_API_KEY;
-  const to = process.env.CONTACT_TO_EMAIL;
-  const from = process.env.CONTACT_FROM_EMAIL || "VANDAQ <onboarding@resend.dev>";
-  if (resendKey && to) {
+  const toEnv = process.env.CONTACT_TO_EMAIL;
+  const from = process.env.CONTACT_FROM_EMAIL || DEFAULT_FROM;
+  if (resendKey) {
+    const to = (toEnv || "")
+      .split(",")
+      .map((s) => s.trim())
+      .filter((s) => s.length > 0);
+    if (to.length === 0) to.push(...DEFAULT_TO);
     try {
       const resend = new Resend(resendKey);
       await resend.emails.send({
