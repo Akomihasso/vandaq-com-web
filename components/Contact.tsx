@@ -21,9 +21,20 @@ export default function Contact() {
       });
       const json = await res.json();
       if (!res.ok) throw new Error(json.error || "Beklenmeyen hata");
-      setStatus("ok");
-      setMessage("Mesajınız iletildi. En kısa sürede dönüş yapacağız.");
-      form.reset();
+      if (json.emailError) {
+        setStatus("error");
+        setMessage(
+          `Talebiniz kaydedildi ancak e-posta bildirimi gönderilemedi (${json.emailError}). Ekibimiz kayıt üzerinden size dönüş yapacaktır.`,
+        );
+      } else {
+        setStatus("ok");
+        setMessage(
+          json.userAckSent
+            ? "Talebiniz iletildi. E-posta adresinize teşekkür mesajı gönderdik."
+            : "Talebiniz iletildi. En kısa sürede dönüş yapacağız.",
+        );
+        form.reset();
+      }
     } catch (err) {
       setStatus("error");
       setMessage(err instanceof Error ? err.message : "Bir hata oluştu");

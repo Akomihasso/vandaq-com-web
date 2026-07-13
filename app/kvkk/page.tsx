@@ -17,36 +17,33 @@ export default function KvkkPage() {
       <h2>1. Veri Sorumlusunun Kimliği</h2>
       <p>
         İşbu Aydınlatma Metni; 6698 sayılı Kanun uyarınca <strong>veri sorumlusu</strong> sıfatıyla
-        hareket eden <strong>VANDAQ Yazılım ve Danışmanlık A.Ş.</strong> (“VANDAQ” veya “Şirket”)
-        tarafından, ilgili kişileri bilgilendirmek amacıyla hazırlanmıştır.
+        hareket eden <strong>VANDAQ</strong> tarafından, ilgili kişileri bilgilendirmek amacıyla
+        hazırlanmıştır. VANDAQ, tüzel kişilik kazandığında ticari sicile ilişkin bilgiler işbu
+        metne eklenecektir.
       </p>
       <table>
         <tbody>
           <tr>
-            <th>Unvan</th>
-            <td>VANDAQ Yazılım ve Danışmanlık A.Ş.</td>
+            <th>Marka</th>
+            <td>VANDAQ</td>
           </tr>
           <tr>
-            <th>Adres</th>
-            <td>[Şirket adresi ticaret sicil kaydına uygun olarak güncellenecektir]</td>
-          </tr>
-          <tr>
-            <th>MERSİS No</th>
-            <td>[MERSİS No güncellenecektir]</td>
-          </tr>
-          <tr>
-            <th>VERBİS Kayıt No</th>
-            <td>[VERBİS Sicil No güncellenecektir]</td>
-          </tr>
-          <tr>
-            <th>E-posta</th>
+            <th>Web Sitesi</th>
             <td>
-              <a href="mailto:kvkk@vandaq.com">kvkk@vandaq.com</a>
+              <a href="https://www.vandaq.com">www.vandaq.com</a>
             </td>
           </tr>
           <tr>
-            <th>KEP Adresi</th>
-            <td>[KEP adresi güncellenecektir]</td>
+            <th>Uygulama</th>
+            <td>
+              <a href="https://www.vandaq-x.com">www.vandaq-x.com</a>
+            </td>
+          </tr>
+          <tr>
+            <th>İletişim</th>
+            <td>
+              <a href="mailto:bilgi@vandaq.com">bilgi@vandaq.com</a>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -159,7 +156,7 @@ export default function KvkkPage() {
 
       <h2>7. İlgili Kişinin Hakları (KVKK m. 11)</h2>
       <p>
-        KVKK’nın 11. maddesi kapsamında ilgili kişi olarak Şirketimize başvurarak aşağıdaki
+        KVKK’nın 11. maddesi kapsamında ilgili kişi olarak VANDAQ’a başvurarak aşağıdaki
         haklarınızı kullanabilirsiniz:
       </p>
       <ol>
@@ -182,25 +179,12 @@ export default function KvkkPage() {
       <h2>8. Başvuru Yöntemi</h2>
       <p>
         Yukarıda sayılan haklarınıza ilişkin taleplerinizi, <strong>Veri Sorumlusuna Başvuru Usul
-        ve Esasları Hakkında Tebliğ</strong> uyarınca;
-      </p>
-      <ul>
-        <li>
-          Yazılı olarak Şirket adresine ıslak imzalı olarak veya noter kanalı ile,
-        </li>
-        <li>
-          Kayıtlı elektronik posta (KEP) adresi ile Şirket KEP adresine güvenli elektronik imzalı
-          olarak,
-        </li>
-        <li>
-          <a href="mailto:kvkk@vandaq.com">kvkk@vandaq.com</a> adresine, sistemimizde kayıtlı
-          e-posta adresinizden,
-        </li>
-      </ul>
-      <p>
-        iletebilirsiniz. Başvurunuz en geç <strong>30 gün</strong> içinde ücretsiz olarak
-        sonuçlandırılır; işlemin ayrıca bir maliyet gerektirmesi halinde Kurul tarafından
-        belirlenen tarife üzerinden ücret alınabilir.
+        ve Esasları Hakkında Tebliğ</strong> uyarınca{" "}
+        <a href="mailto:bilgi@vandaq.com">bilgi@vandaq.com</a> adresine, sistemimizde kayıtlı
+        e-posta adresinizden iletebilirsiniz. Başvurunuz en geç <strong>30 gün</strong> içinde
+        ücretsiz olarak sonuçlandırılır; işlemin ayrıca bir maliyet gerektirmesi halinde Kurul
+        tarafından belirlenen tarife üzerinden ücret alınabilir. VANDAQ tüzel kişilik kazandıktan
+        sonra yazılı başvuru için Şirket adresi, KEP ve VERBİS bilgileri işbu metne eklenecektir.
       </p>
 
       <h2>9. Değişiklikler</h2>

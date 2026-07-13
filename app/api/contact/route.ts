@@ -61,18 +61,27 @@ export async function POST(req: Request) {
   }
 
   // 2) Email notification via Resend
-  // Defaults keep delivery working even if env vars are missing or misconfigured.
+  // onboarding@resend.dev, doğrulama gerektirmeyen ve her zaman iletim garantisi
+  // olan Resend'in ortak test göndericisidir. Domain doğrulaması tamamlandığında
+  // env üzerinden CONTACT_FROM_EMAIL değiştirilebilir.
   const DEFAULT_TO = [
     "abone2026hasan@gmail.com",
     "hasan.demirkiran@kordinat.com.tr",
     "emir.demirkiran@kordinat.com.tr",
   ];
-  const DEFAULT_FROM = "VANDAQ <bildirim@vandaq-x.com>";
+  const DEFAULT_FROM = "VANDAQ <onboarding@resend.dev>";
 
   const resendKey = process.env.RESEND_API_KEY;
   const toEnv = process.env.CONTACT_TO_EMAIL;
   const from = process.env.CONTACT_FROM_EMAIL || DEFAULT_FROM;
-  if (resendKey) {
+
+  let adminSent = false;
+  let userAckSent = false;
+  let emailError: string | null = null;
+
+  if (!resendKey) {
+    emailError = "RESEND_API_KEY tanımlı değil";
+  } else {
     const to = (toEnv || "")
       .split(",")
       .map((s) => s.trim())
@@ -80,22 +89,53 @@ export async function POST(req: Request) {
     if (to.length === 0) to.push(...DEFAULT_TO);
     try {
       const resend = new Resend(resendKey);
-      await resend.emails.send({
+      // Admin bildirimi
+      const adminResp = await resend.emails.send({
         from,
         to,
         replyTo: email,
         subject: `[vandaq.com] ${subject} — ${company || name}`,
-        html: renderEmail({ name, email, company, subject, message, ip, userAgent }),
+        html: renderAdminEmail({ name, email, company, subject, message, ip, userAgent }),
       });
+      if (adminResp.error) {
+        emailError = adminResp.error.message || "Resend admin bildirimi reddetti";
+        console.error("resend admin error", adminResp.error);
+      } else {
+        adminSent = true;
+      }
+
+      // Kullanıcı teşekkür maili (admin başarılıysa)
+      if (adminSent) {
+        const userResp = await resend.emails.send({
+          from,
+          to: [email],
+          subject: "Talebiniz bize ulaştı — VANDAQ",
+          html: renderUserAck({ name, subject }),
+        });
+        if (userResp.error) {
+          console.error("resend user ack error", userResp.error);
+        } else {
+          userAckSent = true;
+        }
+      }
     } catch (err) {
-      console.error("resend send error", err);
+      emailError = err instanceof Error ? err.message : "Bilinmeyen Resend hatası";
+      console.error("resend exception", err);
     }
   }
 
-  return NextResponse.json({ ok: true });
+  return NextResponse.json({
+    ok: true,
+    adminSent,
+    userAckSent,
+    emailError,
+  });
 }
 
-function renderEmail(d: {
+const esc = (s: string) =>
+  s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]!));
+
+function renderAdminEmail(d: {
   name: string;
   email: string;
   company: string;
@@ -104,8 +144,6 @@ function renderEmail(d: {
   ip: string | null;
   userAgent: string | null;
 }) {
-  const esc = (s: string) =>
-    s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]!));
   return `
     <div style="font-family:Inter,system-ui,sans-serif;max-width:560px;margin:0 auto;padding:24px;color:#081b39">
       <div style="border-bottom:1px solid #E8EDF5;padding-bottom:16px;margin-bottom:20px">
@@ -121,6 +159,32 @@ function renderEmail(d: {
       <div style="margin-top:20px;font-size:11px;color:#757686">
         IP: ${esc(d.ip || "—")} · UA: ${esc((d.userAgent || "").slice(0, 200))}
       </div>
+    </div>
+  `;
+}
+
+function renderUserAck(d: { name: string; subject: string }) {
+  return `
+    <div style="font-family:Inter,system-ui,sans-serif;max-width:560px;margin:0 auto;padding:32px 24px;color:#081b39">
+      <div style="text-align:center;margin-bottom:24px">
+        <div style="font-size:28px;font-weight:900;letter-spacing:-0.02em;color:#2c4cd7">VANDAQ</div>
+      </div>
+      <div style="background:#F8FAFF;border:1px solid #E8EDF5;border-radius:16px;padding:24px">
+        <h1 style="font-size:20px;margin:0 0 12px;font-weight:800">Merhaba ${esc(d.name)},</h1>
+        <p style="margin:0 0 14px;font-size:15px;line-height:1.65;color:#444655">
+          <strong>"${esc(d.subject)}"</strong> konulu talebiniz bize ulaştı. Ekibimiz mesajınızı en kısa sürede inceleyip size dönüş yapacaktır.
+        </p>
+        <p style="margin:0 0 14px;font-size:15px;line-height:1.65;color:#444655">
+          Bu arada VANDAQ-X uygulamasını incelemek isterseniz:
+        </p>
+        <p style="margin:0 0 4px">
+          <a href="https://vandaq-x.com" style="display:inline-block;background:#2c4cd7;color:#fff;text-decoration:none;font-weight:700;padding:12px 20px;border-radius:12px;font-size:14px">VANDAQ-X'e Git →</a>
+        </p>
+      </div>
+      <p style="margin:24px 0 0;font-size:12px;color:#757686;text-align:center;line-height:1.6">
+        Bu e-posta VANDAQ iletişim formu üzerinden yaptığınız başvuruya otomatik yanıt olarak gönderildi.<br/>
+        Sorularınız için: <a href="mailto:bilgi@vandaq.com" style="color:#2c4cd7">bilgi@vandaq.com</a>
+      </p>
     </div>
   `;
 }

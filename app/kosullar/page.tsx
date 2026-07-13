@@ -16,8 +16,8 @@ export default function KosullarPage() {
     >
       <h2>1. Taraflar ve Tanımlar</h2>
       <p>
-        İşbu Kullanım Koşulları (“Sözleşme”); bir tarafta <strong>VANDAQ Yazılım ve Danışmanlık
-        A.Ş.</strong> (“VANDAQ”) ile diğer tarafta web sitesini ziyaret eden veya VANDAQ-X
+        İşbu Kullanım Koşulları (“Sözleşme”); bir tarafta <strong>VANDAQ</strong> ile diğer
+        tarafta web sitesini ziyaret eden veya VANDAQ-X
         uygulamasına kayıt olan gerçek/tüzel kişi (“Kullanıcı”) arasında akdedilmiştir.
       </p>
       <ul>

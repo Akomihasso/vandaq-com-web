@@ -16,7 +16,7 @@ export default function GizlilikPage() {
     >
       <h2>1. Giriş</h2>
       <p>
-        <strong>VANDAQ Yazılım ve Danışmanlık A.Ş.</strong> (“VANDAQ”, “biz”), 6698 sayılı Kişisel
+        <strong>VANDAQ</strong> (“VANDAQ”, “biz”), 6698 sayılı Kişisel
         Verilerin Korunması Kanunu (“KVKK”), Elektronik Ticaretin Düzenlenmesi Hakkında 6563 sayılı
         Kanun ve ilgili ikincil mevzuat çerçevesinde kullanıcılarının gizliliğine önem verir. İşbu
         Gizlilik Politikası, veri sorumlusu sıfatıyla topladığımız bilgileri nasıl kullandığımızı
