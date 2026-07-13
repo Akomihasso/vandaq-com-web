@@ -48,9 +48,9 @@ const bg: Record<string, string> = {
 
 export default function Monitoring() {
   return (
-    <section id="izleme" className="py-24 md:py-32 bg-white">
+    <section id="izleme" className="pt-10 md:pt-14 pb-24 md:pb-32 bg-white">
       <div className="container-narrow">
-        <div className="max-w-2xl mx-auto text-center space-y-4 mb-16">
+        <div className="max-w-2xl mx-auto text-center space-y-4 mb-12">
           <span className="chip mx-auto">Tüm Sinyalleri İzliyoruz</span>
           <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight">
             Şirketiniz ile ilgili olabilecek <span className="text-primary">en önemli sinyalleri</span> izliyor ve şirketinize etkisini ölçüyoruz.

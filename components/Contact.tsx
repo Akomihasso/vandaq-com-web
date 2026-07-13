@@ -64,13 +64,12 @@ export default function Contact() {
                 <label className="block text-label text-on-surface-variant mb-2 uppercase tracking-wider">Konu</label>
                 <select
                   name="subject"
-                  defaultValue="Demo Talebi"
+                  defaultValue="Bilgi"
                   className="w-full bg-white border border-border-subtle rounded-xl px-4 py-3 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all text-sm"
                 >
-                  <option>Demo Talebi</option>
-                  <option>Fiyatlandırma</option>
-                  <option>Ortaklık / Bayilik</option>
-                  <option>Teknik Destek</option>
+                  <option>İş Birliği</option>
+                  <option>Bilgi</option>
+                  <option>Öneri</option>
                   <option>Diğer</option>
                 </select>
               </div>

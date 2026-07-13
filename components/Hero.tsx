@@ -5,7 +5,7 @@ export default function Hero() {
     <section className="relative overflow-hidden hero-gradient">
       <div className="absolute inset-0 grid-dot-bg opacity-70 pointer-events-none" aria-hidden />
       <div className="container-narrow pt-10 md:pt-14 pb-8 md:pb-12 relative">
-        <div className="max-w-4xl mx-auto text-center space-y-5 animate-fade-in-up">
+        <div className="max-w-5xl mx-auto text-center space-y-5 animate-fade-in-up">
           <div className="chip mx-auto">
             <span className="relative inline-flex w-2 h-2">
               <span className="absolute inline-flex w-full h-full rounded-full bg-primary animate-pulse-ring" />
@@ -14,7 +14,7 @@ export default function Hero() {
             Dijital İkiz Teknolojisi Aktif
           </div>
 
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.08]">
+          <h1 className="text-4xl md:text-5xl lg:text-[3.5rem] xl:text-6xl font-extrabold tracking-tight leading-[1.08] md:whitespace-nowrap">
             Değişimi görün.{" "}
             <span className="bg-gradient-to-r from-primary via-primary-container to-secondary bg-clip-text text-transparent">
               Stratejinizi kurun.
@@ -68,10 +68,37 @@ export default function Hero() {
             </div>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-              <KpiTile label="CVI" value="0.62" delta="−28%" positive />
-              <KpiTile label="EDI" value="0.44" delta="−0.9%" positive />
-              <KpiTile label="TDI" value="0.51" delta="+3.2%" />
-              <KpiTile label="GRI" value="0.37" delta="+5.1%" warn />
+              <KpiTile
+                label="CVI"
+                value="0.62"
+                delta="−28%"
+                positive
+                title="Kurumsal Kırılganlık İndeksi"
+                desc="Şirketinizin dış şoklara karşı genel kırılganlığını 0–1 aralığında ölçer. Düşük değer daha güçlü direnç demektir."
+              />
+              <KpiTile
+                label="EDI"
+                value="0.44"
+                delta="−0.9%"
+                positive
+                title="Ekonomik Bağımlılık İndeksi"
+                desc="Döviz, faiz, enerji ve emtia gibi ekonomik değişkenlere bağımlılık düzeyinizi gösterir."
+              />
+              <KpiTile
+                label="TDI"
+                value="0.51"
+                delta="+3.2%"
+                title="Teknoloji Bağımlılık İndeksi"
+                desc="Kritik yazılım, donanım ve dijital altyapılara olan bağımlılığınızı ölçer; teknoloji riskinizi özetler."
+              />
+              <KpiTile
+                label="GRI"
+                value="0.37"
+                delta="+5.1%"
+                warn
+                title="Jeopolitik Risk İndeksi"
+                desc="Savaş, ambargo, ticaret koridoru kesintileri ve rejim değişiklikleri gibi jeopolitik risklerin firmanıza etki yoğunluğu."
+              />
             </div>
           </div>
         </div>
@@ -86,12 +113,16 @@ function KpiTile({
   delta,
   positive,
   warn,
+  title,
+  desc,
 }: {
   label: string;
   value: string;
   delta: string;
   positive?: boolean;
   warn?: boolean;
+  title: string;
+  desc: string;
 }) {
   const deltaColor = positive
     ? "text-success"
@@ -99,12 +130,26 @@ function KpiTile({
     ? "text-warning"
     : "text-inverse-primary";
   return (
-    <div className="rounded-2xl bg-white/10 backdrop-blur-md border border-white/15 px-4 py-3">
+    <div
+      className="group relative rounded-2xl bg-white/10 backdrop-blur-md border border-white/15 px-4 py-3 cursor-help transition hover:bg-white/15 hover:border-white/30"
+      tabIndex={0}
+      aria-label={`${label} — ${title}: ${desc}`}
+    >
       <div className="flex items-center justify-between">
         <span className="text-[10px] uppercase tracking-[0.14em] text-white/70">{label}</span>
         <span className={`text-[11px] font-semibold ${deltaColor}`}>{delta}</span>
       </div>
       <div className="text-2xl md:text-3xl font-black mt-1">{value}</div>
+
+      {/* Tooltip */}
+      <div
+        role="tooltip"
+        className="pointer-events-none absolute left-1/2 -translate-x-1/2 bottom-full mb-3 w-64 max-w-[85vw] rounded-xl bg-inverse-surface text-white text-xs leading-relaxed px-4 py-3 shadow-2xl border border-white/10 opacity-0 translate-y-1 transition-all duration-200 group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:translate-y-0 z-20"
+      >
+        <div className="font-bold text-white mb-1">{title}</div>
+        <div className="text-white/80">{desc}</div>
+        <span className="absolute left-1/2 -translate-x-1/2 top-full w-2.5 h-2.5 -mt-1 rotate-45 bg-inverse-surface border-r border-b border-white/10" />
+      </div>
     </div>
   );
 }
