@@ -9,6 +9,8 @@ export default function Features() {
           </h2>
           <p className="text-on-surface-variant text-lg">
             Dört ana modül; her biri diğerini besler ve şirketinizin dijital ikizi üzerinde birlikte çalışır.
+            <br className="hidden md:block" />
+            Genel piyasa yorumları değil, <strong className="text-on-surface">şirketinize özel sayısal veriler</strong> üretiriz.
           </p>
         </div>
 

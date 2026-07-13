@@ -54,7 +54,7 @@ export default function Footer() {
         <div className="border-t border-white/10 mt-12 pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-outline-variant">
           <p>© {year} VANDAQ Digital Twin. Tüm hakları saklıdır.</p>
           <p>
-            VANDAQ, VANTAGE-X patentinin (Haziran 2026) üzerine inşa edilmiş bir buluştur.
+            VANDAQ, dünyada ilk ve tek olan patentli VANDAQ-X projesinin yürütücüsüdür.
           </p>
         </div>
       </div>

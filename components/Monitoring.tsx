@@ -51,9 +51,9 @@ export default function Monitoring() {
     <section id="izleme" className="py-24 md:py-32 bg-white">
       <div className="container-narrow">
         <div className="max-w-2xl mx-auto text-center space-y-4 mb-16">
-          <span className="chip mx-auto">Neyi İzliyoruz</span>
+          <span className="chip mx-auto">Tüm Sinyalleri İzliyoruz</span>
           <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight">
-            Geleceği şekillendiren <span className="text-primary">altı sinyal ailesi</span>
+            Şirketiniz ile ilgili olabilecek <span className="text-primary">en önemli sinyalleri</span> izliyor ve şirketinize etkisini ölçüyoruz.
           </h2>
           <p className="text-on-surface-variant text-lg leading-relaxed">
             Tek bir haber kanalı değil, birbiriyle konuşan altı ayrı dünya. Her sinyal, firmanızın

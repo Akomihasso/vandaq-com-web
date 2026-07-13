@@ -4,8 +4,8 @@ export default function Hero() {
   return (
     <section className="relative overflow-hidden hero-gradient">
       <div className="absolute inset-0 grid-dot-bg opacity-70 pointer-events-none" aria-hidden />
-      <div className="container-narrow pt-16 md:pt-24 pb-8 md:pb-16 relative">
-        <div className="max-w-4xl mx-auto text-center space-y-7 animate-fade-in-up">
+      <div className="container-narrow pt-10 md:pt-14 pb-8 md:pb-12 relative">
+        <div className="max-w-4xl mx-auto text-center space-y-5 animate-fade-in-up">
           <div className="chip mx-auto">
             <span className="relative inline-flex w-2 h-2">
               <span className="absolute inline-flex w-full h-full rounded-full bg-primary animate-pulse-ring" />
@@ -14,11 +14,10 @@ export default function Hero() {
             Dijital İkiz Teknolojisi Aktif
           </div>
 
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.05]">
-            Dış dünya değişiyor.
-            <br />
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.08]">
+            Değişimi görün.{" "}
             <span className="bg-gradient-to-r from-primary via-primary-container to-secondary bg-clip-text text-transparent">
-              Şirketiniz için ne anlama geldiğini biliyor musunuz?
+              Stratejinizi kurun.
             </span>
           </h1>
 
@@ -45,7 +44,7 @@ export default function Hero() {
         </div>
 
         {/* Video showcase card */}
-        <div className="mt-14 md:mt-20 hero-video-wrap aspect-[16/9] max-w-6xl mx-auto animate-fade-in-up">
+        <div className="mt-8 md:mt-10 hero-video-wrap aspect-[16/9] max-w-6xl mx-auto animate-fade-in-up">
           <video
             src="/hero.mp4"
             autoPlay

@@ -15,8 +15,8 @@ export default function About() {
               karbon yoğunluğunuza göre <em>gerçek etkisini</em> hesaplar.
             </p>
             <p className="text-on-surface-variant leading-relaxed">
-              VANTAGE-X patentinin (Haziran 2026) üzerine inşa edilen gelişmiş buluş olarak
-              6769 Sayılı SMK ve EPC kapsamında patent süreci yürütülmektedir.
+              VANDAQ, dünyada ilk ve tek olan patentli <strong className="text-on-surface">VANDAQ-X</strong> projesinin yürütücüsüdür;
+              6769 Sayılı SMK ve EPC kapsamında patent süreci devam etmektedir.
             </p>
             <div className="grid grid-cols-3 gap-6 pt-4 max-w-md">
               <div>
