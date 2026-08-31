@@ -59,7 +59,7 @@ export default function Hero() {
             preload="metadata"
             poster="/ornek-tasarim.png"
           />
-          <div className="content h-full w-full flex flex-col justify-between p-6 md:p-10 text-white">
+          <div className="content h-full w-full flex flex-col justify-between px-6 pt-6 pb-3 md:px-10 md:pt-8 md:pb-4 text-white">
             <div className="flex items-center justify-between">
               <div className="chip !bg-white/10 !border-white/20 !text-white">
                 <span className="w-2 h-2 rounded-full bg-success animate-pulse" />
@@ -74,7 +74,7 @@ export default function Hero() {
 
             <div className="flex items-stretch gap-2 md:gap-3">
               {/* CVI — sol, bileşik */}
-              <div className="relative flex-none w-[100px] md:w-[120px] pt-4">
+              <div className="relative flex-none w-[130px] md:w-[150px] pt-4">
                 <span className="absolute top-0 left-2 text-[8px] uppercase tracking-wider font-bold bg-primary/70 text-white px-2 py-0.5 rounded-full border border-white/20 whitespace-nowrap">
                   {c.compositeIndex}
                 </span>
@@ -117,7 +117,7 @@ function KpiTile({
   const deltaColor = positive ? "text-success" : warn ? "text-warning" : "text-inverse-primary";
   return (
     <div
-      className={`group relative rounded-xl bg-white/10 backdrop-blur-md border border-white/15 cursor-help transition hover:bg-white/15 hover:border-white/30 ${compact ? "px-2.5 py-1.5" : "px-4 py-3"}`}
+      className={`group relative rounded-xl bg-white/10 backdrop-blur-md border border-white/15 cursor-help transition hover:bg-white/15 hover:border-white/30 ${compact ? "px-2.5 py-1" : "px-4 py-3"}`}
       tabIndex={0}
       aria-label={`${label} — ${title}: ${desc}`}
     >
@@ -128,7 +128,7 @@ function KpiTile({
         </div>
         <span className={`text-[10px] font-semibold ${deltaColor}`}>{delta}</span>
       </div>
-      <div className={`font-black mt-1 ${compact ? "text-xl md:text-2xl" : "text-2xl md:text-3xl"}`}>{value}</div>
+      <div className={`font-black mt-0.5 ${compact ? "text-lg md:text-xl" : "text-2xl md:text-3xl"}`}>{value}</div>
       <div
         role="tooltip"
         className="pointer-events-none absolute left-1/2 -translate-x-1/2 bottom-full mb-3 w-64 max-w-[85vw] rounded-xl bg-inverse-surface text-white text-xs leading-relaxed px-4 py-3 shadow-2xl border border-white/10 opacity-0 translate-y-1 transition-all duration-200 group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:translate-y-0 z-20"
