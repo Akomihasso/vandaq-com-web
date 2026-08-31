@@ -72,30 +72,33 @@ export default function Hero() {
               </div>
             </div>
 
-            <div className="flex flex-col gap-3 md:gap-4">
-              {/* CVI — Bileşik İndeks */}
-              <div className="relative pt-3">
-                <span className="absolute top-0 left-3 text-[10px] uppercase tracking-[0.14em] font-bold bg-primary/70 text-white px-2.5 py-0.5 rounded-full border border-white/20">
+            <div className="flex items-stretch gap-2 md:gap-3">
+              {/* CVI — sol, bileşik */}
+              <div className="relative flex-none w-[120px] md:w-[140px] pt-4">
+                <span className="absolute top-0 left-2 text-[8px] uppercase tracking-wider font-bold bg-primary/70 text-white px-2 py-0.5 rounded-full border border-white/20 whitespace-nowrap">
                   {c.compositeIndex}
                 </span>
-                <div className="ring-2 ring-white/40 rounded-2xl">
+                <div className="ring-2 ring-white/40 rounded-xl h-full">
                   <KpiTile
                     label="CVI"
                     subtitle={c.kpi.cvi.subtitle}
                     value="0.62"
                     delta="−28%"
                     positive
+                    compact
                     title={c.kpi.cvi.title}
                     desc={c.kpi.cvi.desc}
                   />
                 </div>
               </div>
-              {/* 4 alt indeks */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-                <KpiTile label="EDI" subtitle={c.kpi.edi.subtitle} value="0.44" delta="−0.9%" positive title={c.kpi.edi.title} desc={c.kpi.edi.desc} />
-                <KpiTile label="TDI" subtitle={c.kpi.tdi.subtitle} value="0.51" delta="+3.2%" title={c.kpi.tdi.title} desc={c.kpi.tdi.desc} />
-                <KpiTile label="CSI" subtitle={c.kpi.csi.subtitle} value="0.29" delta="+1.8%" title={c.kpi.csi.title} desc={c.kpi.csi.desc} />
-                <KpiTile label="GRI" subtitle={c.kpi.gri.subtitle} value="0.37" delta="+5.1%" warn title={c.kpi.gri.title} desc={c.kpi.gri.desc} />
+              {/* Ayırıcı */}
+              <div className="w-px self-stretch bg-white/25 rounded-full flex-none" />
+              {/* 4 alt indeks — sağ */}
+              <div className="grid grid-cols-2 gap-2 flex-1">
+                <KpiTile label="EDI" subtitle={c.kpi.edi.subtitle} value="0.44" delta="−0.9%" positive compact title={c.kpi.edi.title} desc={c.kpi.edi.desc} />
+                <KpiTile label="TDI" subtitle={c.kpi.tdi.subtitle} value="0.51" delta="+3.2%" compact title={c.kpi.tdi.title} desc={c.kpi.tdi.desc} />
+                <KpiTile label="CSI" subtitle={c.kpi.csi.subtitle} value="0.29" delta="+1.8%" compact title={c.kpi.csi.title} desc={c.kpi.csi.desc} />
+                <KpiTile label="GRI" subtitle={c.kpi.gri.subtitle} value="0.37" delta="+5.1%" warn compact title={c.kpi.gri.title} desc={c.kpi.gri.desc} />
               </div>
             </div>
           </div>
@@ -106,26 +109,26 @@ export default function Hero() {
 }
 
 function KpiTile({
-  label, subtitle, value, delta, positive, warn, title, desc,
+  label, subtitle, value, delta, positive, warn, compact, title, desc,
 }: {
   label: string; subtitle?: string; value: string; delta: string;
-  positive?: boolean; warn?: boolean; title: string; desc: string;
+  positive?: boolean; warn?: boolean; compact?: boolean; title: string; desc: string;
 }) {
   const deltaColor = positive ? "text-success" : warn ? "text-warning" : "text-inverse-primary";
   return (
     <div
-      className="group relative rounded-2xl bg-white/10 backdrop-blur-md border border-white/15 px-4 py-3 cursor-help transition hover:bg-white/15 hover:border-white/30"
+      className={`group relative rounded-xl bg-white/10 backdrop-blur-md border border-white/15 cursor-help transition hover:bg-white/15 hover:border-white/30 ${compact ? "px-3 py-2" : "px-4 py-3"}`}
       tabIndex={0}
       aria-label={`${label} — ${title}: ${desc}`}
     >
       <div className="flex items-center justify-between">
         <div>
-          <span className="text-[10px] uppercase tracking-[0.14em] text-white/70">{label}</span>
-          {subtitle && <div className="text-[9px] text-white/50 leading-tight mt-0.5">{subtitle}</div>}
+          <span className="text-[9px] uppercase tracking-[0.14em] text-white/70">{label}</span>
+          {subtitle && <div className="text-[8px] text-white/50 leading-tight mt-0.5">{subtitle}</div>}
         </div>
-        <span className={`text-[11px] font-semibold ${deltaColor}`}>{delta}</span>
+        <span className={`text-[10px] font-semibold ${deltaColor}`}>{delta}</span>
       </div>
-      <div className="text-2xl md:text-3xl font-black mt-1">{value}</div>
+      <div className={`font-black mt-1 ${compact ? "text-xl md:text-2xl" : "text-2xl md:text-3xl"}`}>{value}</div>
       <div
         role="tooltip"
         className="pointer-events-none absolute left-1/2 -translate-x-1/2 bottom-full mb-3 w-64 max-w-[85vw] rounded-xl bg-inverse-surface text-white text-xs leading-relaxed px-4 py-3 shadow-2xl border border-white/10 opacity-0 translate-y-1 transition-all duration-200 group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:translate-y-0 z-20"
