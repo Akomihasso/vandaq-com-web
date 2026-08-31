@@ -6,9 +6,8 @@ const BREVO_API = "https://api.brevo.com/v3/smtp/email";
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const DEFAULT_TO = [
-  "abone2026hasan@gmail.com",
   "hasan.demirkiran@kordinat.com.tr",
-  "emir.demirkiran@kordinat.com.tr",
+  "bilgi@vandaq.com",
 ];
 
 type Body = {
