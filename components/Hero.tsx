@@ -11,13 +11,13 @@ export default function Hero() {
               <span className="absolute inline-flex w-full h-full rounded-full bg-primary animate-pulse-ring" />
               <span className="relative inline-flex w-2 h-2 rounded-full bg-primary" />
             </span>
-            Dijital İkiz Teknolojisi Aktif
+            Rekabet İstihbarat Teknolojisi Aktif
           </div>
 
-          <h1 className="text-4xl md:text-5xl lg:text-[3.5rem] xl:text-6xl font-extrabold tracking-tight leading-[1.08] md:whitespace-nowrap">
-            Değişimi görün.{" "}
+          <h1 className="text-4xl md:text-5xl lg:text-[3.5rem] xl:text-6xl font-extrabold tracking-tight leading-[1.08]">
+            Şirketinizi etkileyecek{" "}
             <span className="bg-gradient-to-r from-primary via-primary-container to-secondary bg-clip-text text-transparent">
-              Stratejinizi kurun.
+              gelişmeleri önceden görün
             </span>
           </h1>
 
@@ -67,38 +67,61 @@ export default function Hero() {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-              <KpiTile
-                label="CVI"
-                value="0.62"
-                delta="−28%"
-                positive
-                title="Kurumsal Kırılganlık İndeksi"
-                desc="Şirketinizin dış şoklara karşı genel kırılganlığını 0–1 aralığında ölçer. Düşük değer daha güçlü direnç demektir."
-              />
-              <KpiTile
-                label="EDI"
-                value="0.44"
-                delta="−0.9%"
-                positive
-                title="Ekonomik Bağımlılık İndeksi"
-                desc="Döviz, faiz, enerji ve emtia gibi ekonomik değişkenlere bağımlılık düzeyinizi gösterir."
-              />
-              <KpiTile
-                label="TDI"
-                value="0.51"
-                delta="+3.2%"
-                title="Teknoloji Bağımlılık İndeksi"
-                desc="Kritik yazılım, donanım ve dijital altyapılara olan bağımlılığınızı ölçer; teknoloji riskinizi özetler."
-              />
-              <KpiTile
-                label="GRI"
-                value="0.37"
-                delta="+5.1%"
-                warn
-                title="Jeopolitik Risk İndeksi"
-                desc="Savaş, ambargo, ticaret koridoru kesintileri ve rejim değişiklikleri gibi jeopolitik risklerin firmanıza etki yoğunluğu."
-              />
+            <div className="flex flex-col gap-3 md:gap-4">
+              {/* CVI — Bileşik İndeks */}
+              <div className="relative pt-3">
+                <span className="absolute top-0 left-3 text-[10px] uppercase tracking-[0.14em] font-bold bg-primary/70 text-white px-2.5 py-0.5 rounded-full border border-white/20">
+                  Bileşik İndeks
+                </span>
+                <div className="ring-2 ring-white/40 rounded-2xl">
+                  <KpiTile
+                    label="CVI"
+                    subtitle="Kurumsal Kırılganlık"
+                    value="0.62"
+                    delta="−28%"
+                    positive
+                    title="Kurumsal Kırılganlık İndeksi (CVI)"
+                    desc="EDI, TDI, CSI ve GRI'nin ağırlıklı ortalaması. Şirketinizin dış şoklara karşı genel kırılganlığını 0–1 aralığında ölçer. Düşük değer daha güçlü direnç demektir."
+                  />
+                </div>
+              </div>
+              {/* 4 alt indeks */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+                <KpiTile
+                  label="EDI"
+                  subtitle="Ekonomik Bağımlılık"
+                  value="0.44"
+                  delta="−0.9%"
+                  positive
+                  title="Ekonomik Bağımlılık İndeksi (EDI)"
+                  desc="Döviz, faiz, enerji ve emtia gibi ekonomik değişkenlere bağımlılık düzeyinizi gösterir."
+                />
+                <KpiTile
+                  label="TDI"
+                  subtitle="Teknoloji Bağımlılık"
+                  value="0.51"
+                  delta="+3.2%"
+                  title="Teknoloji Bağımlılık İndeksi (TDI)"
+                  desc="Kritik yazılım, donanım ve dijital altyapılara olan bağımlılığınızı ölçer; teknoloji riskini özetler."
+                />
+                <KpiTile
+                  label="CSI"
+                  subtitle="İklim Duyarlılık"
+                  value="0.29"
+                  delta="+1.8%"
+                  title="İklim Duyarlılık İndeksi (CSI)"
+                  desc="İklim olayları ve çevresel risklerin (kuraklık, sel, afet, karbon mevzuatı) şirketinize etki yoğunluğu."
+                />
+                <KpiTile
+                  label="GRI"
+                  subtitle="Jeopolitik Risk"
+                  value="0.37"
+                  delta="+5.1%"
+                  warn
+                  title="Jeopolitik Risk İndeksi (GRI)"
+                  desc="Savaş, ambargo, ticaret koridoru kesintileri ve rejim değişiklikleri gibi jeopolitik risklerin firmanıza etki yoğunluğu."
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -109,6 +132,7 @@ export default function Hero() {
 
 function KpiTile({
   label,
+  subtitle,
   value,
   delta,
   positive,
@@ -117,6 +141,7 @@ function KpiTile({
   desc,
 }: {
   label: string;
+  subtitle?: string;
   value: string;
   delta: string;
   positive?: boolean;
@@ -136,7 +161,10 @@ function KpiTile({
       aria-label={`${label} — ${title}: ${desc}`}
     >
       <div className="flex items-center justify-between">
-        <span className="text-[10px] uppercase tracking-[0.14em] text-white/70">{label}</span>
+        <div>
+          <span className="text-[10px] uppercase tracking-[0.14em] text-white/70">{label}</span>
+          {subtitle && <div className="text-[9px] text-white/50 leading-tight mt-0.5">{subtitle}</div>}
+        </div>
         <span className={`text-[11px] font-semibold ${deltaColor}`}>{delta}</span>
       </div>
       <div className="text-2xl md:text-3xl font-black mt-1">{value}</div>

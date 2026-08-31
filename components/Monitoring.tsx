@@ -2,37 +2,37 @@ const categories = [
   {
     icon: "coin",
     title: "Para Piyasaları",
-    desc: "Döviz kurları, faiz, tahvil getirileri ve küresel likidite akışları.",
+    desc: "Döviz kurları, faiz, tahvil getirileri, altın, Bitcoin, borsalar ve küresel likidite akışları.",
     color: "primary",
   },
   {
     icon: "leaf",
     title: "Enerji & Emtia",
-    desc: "Petrol, doğalgaz, elektrik, bakır, çelik ve tarımsal emtia volatilitesi.",
+    desc: "Petrol, doğalgaz, elektrik, bakır, çelik, alüminyum, kritik elementler ve tarımsal emtia volatilitesi.",
     color: "warning",
   },
   {
     icon: "globe",
     title: "Jeopolitik & Savaşlar",
-    desc: "Çatışmalar, ambargolar, ticaret gerilimleri ve tedarik zinciri koridorları.",
+    desc: "Çatışmalar, ambargolar, ticaret gerilimleri, yeni ittifaklar ve tedarik zinciri koridorları.",
     color: "secondary",
   },
   {
     icon: "gavel",
     title: "Vergi & Regülasyon",
-    desc: "CBAM, karbon vergisi, Made in Europe, KDV ve sektörel düzenlemeler.",
+    desc: "CBAM, COP31, karbon vergisi, Made in Europe, Amerikan Gümrük Vergileri, ek vergi, KDV ve sektörel düzenlemeler.",
     color: "success",
   },
   {
     icon: "cloud",
     title: "İklim & Doğal Olaylar",
-    desc: "Kuraklık, sel, tayfun, orman yangını ve tarım/lojistik etkileri.",
+    desc: "Deprem, kuraklık, sel, tayfun, orman yangını ve tarım/lojistik etkileri.",
     color: "info",
   },
   {
     icon: "patent",
     title: "Rakip & IP Sinyalleri",
-    desc: "Patent, marka, halka arz, iflas ve yeni ürün duyuruları.",
+    desc: "Halka arz, satın almalar, konkordato, iflas, patent, marka ve yeni ürün duyuruları.",
     color: "danger",
   },
 ];
@@ -56,8 +56,11 @@ export default function Monitoring() {
             Şirketiniz ile ilgili olabilecek <span className="text-primary">en önemli sinyalleri</span> izliyor ve şirketinize etkisini ölçüyoruz.
           </h2>
           <p className="text-on-surface-variant text-lg leading-relaxed">
-            Tek bir haber kanalı değil, birbiriyle konuşan altı ayrı dünya. Her sinyal, firmanızın
-            profiline göre ayrı yönlerde ve büyüklüklerde işlenir.
+            Döviz, faiz, enerji, emtia, jeopolitik ve regülasyon değişikliklerinin şirketinizin maliyetlerini,
+            gelirlerini, tedarik zincirini ve rekabet gücünüzü nasıl etkileyeceğini değerlendirin.
+            VANDAQ-X haber kanalı değil; aynı haberi herkes okuyor, VANDAQ-X size o haberin veya bir
+            değişim sinyalinin sizin firmanıza özel karşılığını, risk derecesini, ne zaman geleceğini
+            ve ne yapmanız gerektiğini söylüyor.
           </p>
         </div>
 
@@ -72,10 +75,6 @@ export default function Monitoring() {
               </div>
               <h3 className="text-lg font-bold mb-2">{c.title}</h3>
               <p className="text-on-surface-variant text-sm leading-relaxed">{c.desc}</p>
-              <div className="mt-6 flex items-center text-primary text-xs font-semibold opacity-0 group-hover:opacity-100 transition-opacity">
-                Detayları gör
-                <span className="ml-1.5">→</span>
-              </div>
             </div>
           ))}
         </div>
