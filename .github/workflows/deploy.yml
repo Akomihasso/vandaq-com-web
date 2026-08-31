@@ -16,9 +16,8 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             set -e
-            cd /var/www/vandaq
+            cd /var/www/vandaq/site
             git pull origin main
-            cd site
             npm ci --prefer-offline
             npm run build
             pm2 reload ecosystem.config.js --env production || pm2 start ecosystem.config.js --env production

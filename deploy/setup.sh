@@ -12,13 +12,12 @@ sudo npm install -g pm2
 pm2 startup systemd -u "$USER" --hp "$HOME"
 
 # ── Repo ───────────────────────────────────────────────────────────────────
-sudo mkdir -p /var/www/vandaq
-sudo chown "$USER":"$USER" /var/www/vandaq
-cd /var/www/vandaq
+sudo mkdir -p /var/www/vandaq/site
+sudo chown -R "$USER":"$USER" /var/www/vandaq
+cd /var/www/vandaq/site
 git clone https://github.com/Akomihasso/vandaq-com-web.git .
 
 # ── Bağımlılıklar + build ──────────────────────────────────────────────────
-cd site
 npm ci
 # .env.local dosyasını oluştur ve BREVO_API_KEY'i gir:
 # nano .env.local
@@ -32,7 +31,7 @@ pm2 start ecosystem.config.js --env production
 pm2 save
 
 # ── Nginx ──────────────────────────────────────────────────────────────────
-sudo cp deploy/nginx.conf /etc/nginx/sites-available/vandaq
+sudo cp /var/www/vandaq/site/deploy/nginx.conf /etc/nginx/sites-available/vandaq
 sudo ln -sf /etc/nginx/sites-available/vandaq /etc/nginx/sites-enabled/vandaq
 sudo rm -f /etc/nginx/sites-enabled/default
 sudo nginx -t && sudo systemctl reload nginx
