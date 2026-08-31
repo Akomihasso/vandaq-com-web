@@ -1,6 +1,12 @@
+"use client";
+import { useLanguage } from "@/lib/i18n";
+
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "https://vandaq-x.com";
 
 export default function Hero() {
+  const { content } = useLanguage();
+  const c = content.hero;
+
   return (
     <section className="relative overflow-hidden hero-gradient">
       <div className="absolute inset-0 grid-dot-bg opacity-70 pointer-events-none" aria-hidden />
@@ -11,36 +17,35 @@ export default function Hero() {
               <span className="absolute inline-flex w-full h-full rounded-full bg-primary animate-pulse-ring" />
               <span className="relative inline-flex w-2 h-2 rounded-full bg-primary" />
             </span>
-            Rekabet İstihbarat Teknolojisi Aktif
+            {c.chip}
           </div>
 
           <h1 className="text-4xl md:text-5xl lg:text-[3.5rem] xl:text-6xl font-extrabold tracking-tight leading-[1.08]">
-            Şirketinizi etkileyecek{" "}
+            {c.h1.plain}{" "}
             <span className="bg-gradient-to-r from-primary via-primary-container to-secondary bg-clip-text text-transparent">
-              gelişmeleri önceden görün
+              {c.h1.highlight}
             </span>
           </h1>
 
           <p className="text-lg md:text-xl text-on-surface-variant max-w-2xl mx-auto leading-relaxed">
-            VANDAQ; para piyasaları, enerji, jeopolitik, iklim ve regülasyon
-            sinyallerini <strong className="text-on-surface">şirketinizin dijital ikizi</strong> üzerinde
-            işler; genel yorumlar yerine <em>size özel</em> sayısal etki ve strateji üretir.
+            {c.desc.pre}{" "}
+            <strong className="text-on-surface">{c.desc.strong}</strong>{" "}
+            {c.desc.mid} <em>{c.desc.em}</em>{" "}
+            {c.desc.post}
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
             <a href={APP_URL} target="_blank" rel="noopener noreferrer" className="btn-primary">
-              15 Gün Ücretsiz Dene
+              {c.ctaPrimary}
               <ArrowIcon />
             </a>
             <a href="#nasil-calisir" className="btn-ghost">
               <PlayIcon />
-              Nasıl Çalıştığını İzle
+              {c.ctaGhost}
             </a>
           </div>
 
-          <p className="text-xs text-on-surface-variant/70 pt-1">
-            Kredi kartı gerekmez • KVKK/GDPR uyumlu • İstediğiniz zaman iptal
-          </p>
+          <p className="text-xs text-on-surface-variant/70 pt-1">{c.disclaimer}</p>
         </div>
 
         {/* Video showcase card */}
@@ -58,7 +63,7 @@ export default function Hero() {
             <div className="flex items-center justify-between">
               <div className="chip !bg-white/10 !border-white/20 !text-white">
                 <span className="w-2 h-2 rounded-full bg-success animate-pulse" />
-                Canlı Sinyal Akışı
+                {c.liveSignal}
               </div>
               <div className="hidden sm:flex items-center gap-2 text-white/70 text-xs">
                 <span className="w-2.5 h-2.5 rounded-full bg-danger/70" />
@@ -71,56 +76,26 @@ export default function Hero() {
               {/* CVI — Bileşik İndeks */}
               <div className="relative pt-3">
                 <span className="absolute top-0 left-3 text-[10px] uppercase tracking-[0.14em] font-bold bg-primary/70 text-white px-2.5 py-0.5 rounded-full border border-white/20">
-                  Bileşik İndeks
+                  {c.compositeIndex}
                 </span>
                 <div className="ring-2 ring-white/40 rounded-2xl">
                   <KpiTile
                     label="CVI"
-                    subtitle="Kurumsal Kırılganlık"
+                    subtitle={c.kpi.cvi.subtitle}
                     value="0.62"
                     delta="−28%"
                     positive
-                    title="Kurumsal Kırılganlık İndeksi (CVI)"
-                    desc="EDI, TDI, CSI ve GRI'nin ağırlıklı ortalaması. Şirketinizin dış şoklara karşı genel kırılganlığını 0–1 aralığında ölçer. Düşük değer daha güçlü direnç demektir."
+                    title={c.kpi.cvi.title}
+                    desc={c.kpi.cvi.desc}
                   />
                 </div>
               </div>
               {/* 4 alt indeks */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-                <KpiTile
-                  label="EDI"
-                  subtitle="Ekonomik Bağımlılık"
-                  value="0.44"
-                  delta="−0.9%"
-                  positive
-                  title="Ekonomik Bağımlılık İndeksi (EDI)"
-                  desc="Döviz, faiz, enerji ve emtia gibi ekonomik değişkenlere bağımlılık düzeyinizi gösterir."
-                />
-                <KpiTile
-                  label="TDI"
-                  subtitle="Teknoloji Bağımlılık"
-                  value="0.51"
-                  delta="+3.2%"
-                  title="Teknoloji Bağımlılık İndeksi (TDI)"
-                  desc="Kritik yazılım, donanım ve dijital altyapılara olan bağımlılığınızı ölçer; teknoloji riskini özetler."
-                />
-                <KpiTile
-                  label="CSI"
-                  subtitle="İklim Duyarlılık"
-                  value="0.29"
-                  delta="+1.8%"
-                  title="İklim Duyarlılık İndeksi (CSI)"
-                  desc="İklim olayları ve çevresel risklerin (kuraklık, sel, afet, karbon mevzuatı) şirketinize etki yoğunluğu."
-                />
-                <KpiTile
-                  label="GRI"
-                  subtitle="Jeopolitik Risk"
-                  value="0.37"
-                  delta="+5.1%"
-                  warn
-                  title="Jeopolitik Risk İndeksi (GRI)"
-                  desc="Savaş, ambargo, ticaret koridoru kesintileri ve rejim değişiklikleri gibi jeopolitik risklerin firmanıza etki yoğunluğu."
-                />
+                <KpiTile label="EDI" subtitle={c.kpi.edi.subtitle} value="0.44" delta="−0.9%" positive title={c.kpi.edi.title} desc={c.kpi.edi.desc} />
+                <KpiTile label="TDI" subtitle={c.kpi.tdi.subtitle} value="0.51" delta="+3.2%" title={c.kpi.tdi.title} desc={c.kpi.tdi.desc} />
+                <KpiTile label="CSI" subtitle={c.kpi.csi.subtitle} value="0.29" delta="+1.8%" title={c.kpi.csi.title} desc={c.kpi.csi.desc} />
+                <KpiTile label="GRI" subtitle={c.kpi.gri.subtitle} value="0.37" delta="+5.1%" warn title={c.kpi.gri.title} desc={c.kpi.gri.desc} />
               </div>
             </div>
           </div>
@@ -131,29 +106,12 @@ export default function Hero() {
 }
 
 function KpiTile({
-  label,
-  subtitle,
-  value,
-  delta,
-  positive,
-  warn,
-  title,
-  desc,
+  label, subtitle, value, delta, positive, warn, title, desc,
 }: {
-  label: string;
-  subtitle?: string;
-  value: string;
-  delta: string;
-  positive?: boolean;
-  warn?: boolean;
-  title: string;
-  desc: string;
+  label: string; subtitle?: string; value: string; delta: string;
+  positive?: boolean; warn?: boolean; title: string; desc: string;
 }) {
-  const deltaColor = positive
-    ? "text-success"
-    : warn
-    ? "text-warning"
-    : "text-inverse-primary";
+  const deltaColor = positive ? "text-success" : warn ? "text-warning" : "text-inverse-primary";
   return (
     <div
       className="group relative rounded-2xl bg-white/10 backdrop-blur-md border border-white/15 px-4 py-3 cursor-help transition hover:bg-white/15 hover:border-white/30"
@@ -168,8 +126,6 @@ function KpiTile({
         <span className={`text-[11px] font-semibold ${deltaColor}`}>{delta}</span>
       </div>
       <div className="text-2xl md:text-3xl font-black mt-1">{value}</div>
-
-      {/* Tooltip */}
       <div
         role="tooltip"
         className="pointer-events-none absolute left-1/2 -translate-x-1/2 bottom-full mb-3 w-64 max-w-[85vw] rounded-xl bg-inverse-surface text-white text-xs leading-relaxed px-4 py-3 shadow-2xl border border-white/10 opacity-0 translate-y-1 transition-all duration-200 group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:translate-y-0 z-20"

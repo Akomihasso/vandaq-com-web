@@ -1,41 +1,5 @@
-const categories = [
-  {
-    icon: "coin",
-    title: "Para Piyasaları",
-    desc: "Döviz kurları, faiz, tahvil getirileri, altın, Bitcoin, borsalar ve küresel likidite akışları.",
-    color: "primary",
-  },
-  {
-    icon: "leaf",
-    title: "Enerji & Emtia",
-    desc: "Petrol, doğalgaz, elektrik, bakır, çelik, alüminyum, kritik elementler ve tarımsal emtia volatilitesi.",
-    color: "warning",
-  },
-  {
-    icon: "globe",
-    title: "Jeopolitik & Savaşlar",
-    desc: "Çatışmalar, ambargolar, ticaret gerilimleri, yeni ittifaklar ve tedarik zinciri koridorları.",
-    color: "secondary",
-  },
-  {
-    icon: "gavel",
-    title: "Vergi & Regülasyon",
-    desc: "CBAM, COP31, karbon vergisi, Made in Europe, Amerikan Gümrük Vergileri, ek vergi, KDV ve sektörel düzenlemeler.",
-    color: "success",
-  },
-  {
-    icon: "cloud",
-    title: "İklim & Doğal Olaylar",
-    desc: "Deprem, kuraklık, sel, tayfun, orman yangını ve tarım/lojistik etkileri.",
-    color: "info",
-  },
-  {
-    icon: "patent",
-    title: "Rakip & IP Sinyalleri",
-    desc: "Halka arz, satın almalar, konkordato, iflas, patent, marka ve yeni ürün duyuruları.",
-    color: "danger",
-  },
-];
+"use client";
+import { useLanguage } from "@/lib/i18n";
 
 const bg: Record<string, string> = {
   primary: "bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white",
@@ -47,34 +11,31 @@ const bg: Record<string, string> = {
 };
 
 export default function Monitoring() {
+  const { content } = useLanguage();
+  const c = content.monitoring;
+
   return (
     <section id="izleme" className="pt-10 md:pt-14 pb-24 md:pb-32 bg-white">
       <div className="container-narrow">
         <div className="max-w-2xl mx-auto text-center space-y-4 mb-12">
-          <span className="chip mx-auto">Tüm Sinyalleri İzliyoruz</span>
+          <span className="chip mx-auto">{c.chip}</span>
           <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight">
-            Şirketiniz ile ilgili olabilecek <span className="text-primary">en önemli sinyalleri</span> izliyor ve şirketinize etkisini ölçüyoruz.
+            {c.h2.pre} <span className="text-primary">{c.h2.highlight}</span> {c.h2.post}
           </h2>
-          <p className="text-on-surface-variant text-lg leading-relaxed">
-            Döviz, faiz, enerji, emtia, jeopolitik ve regülasyon değişikliklerinin şirketinizin maliyetlerini,
-            gelirlerini, tedarik zincirini ve rekabet gücünüzü nasıl etkileyeceğini değerlendirin.
-            VANDAQ-X haber kanalı değil; aynı haberi herkes okuyor, VANDAQ-X size o haberin veya bir
-            değişim sinyalinin sizin firmanıza özel karşılığını, risk derecesini, ne zaman geleceğini
-            ve ne yapmanız gerektiğini söylüyor.
-          </p>
+          <p className="text-on-surface-variant text-lg leading-relaxed">{c.desc}</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {categories.map((c) => (
+          {c.categories.map((cat) => (
             <div
-              key={c.title}
+              key={cat.title}
               className="group relative rounded-3xl p-7 bg-app-bg border border-border-subtle hover:border-primary/30 hover:shadow-[0_20px_50px_-30px_rgba(44,76,215,0.35)] transition-all"
             >
-              <div className={`w-12 h-12 rounded-xl grid place-items-center mb-5 transition-colors ${bg[c.color]}`}>
-                <Icon name={c.icon} />
+              <div className={`w-12 h-12 rounded-xl grid place-items-center mb-5 transition-colors ${bg[cat.color]}`}>
+                <Icon name={cat.icon} />
               </div>
-              <h3 className="text-lg font-bold mb-2">{c.title}</h3>
-              <p className="text-on-surface-variant text-sm leading-relaxed">{c.desc}</p>
+              <h3 className="text-lg font-bold mb-2">{cat.title}</h3>
+              <p className="text-on-surface-variant text-sm leading-relaxed">{cat.desc}</p>
             </div>
           ))}
         </div>
@@ -82,16 +43,14 @@ export default function Monitoring() {
         <div className="mt-14 rounded-3xl p-6 md:p-8 bg-gradient-to-br from-primary to-secondary text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
           <div className="max-w-xl">
             <p className="text-white/80 text-xs uppercase tracking-[0.18em] font-semibold mb-2">
-              24/7 Kesintisiz Analiz
+              {c.banner.label}
             </p>
-            <h3 className="text-2xl md:text-3xl font-extrabold leading-tight">
-              Sinyal geldiği anda, etkisi hesaplanır. Kritik eşik aşılınca bildirim size ulaşır.
-            </h3>
+            <h3 className="text-2xl md:text-3xl font-extrabold leading-tight">{c.banner.h3}</h3>
           </div>
           <div className="grid grid-cols-3 gap-4 md:gap-6">
-            <Stat label="Sinyal Kaynağı" value="120+" />
-            <Stat label="Ort. Tepki" value="<3 sn" />
-            <Stat label="Sunucu Uptime" value="%99.9" />
+            {c.banner.stats.map((s) => (
+              <Stat key={s.label} label={s.label} value={s.value} />
+            ))}
           </div>
         </div>
       </div>
@@ -109,7 +68,6 @@ function Stat({ label, value }: { label: string; value: string }) {
 }
 
 function Icon({ name }: { name: string }) {
-  const p = "M";
   switch (name) {
     case "coin":
       return (
@@ -151,6 +109,6 @@ function Icon({ name }: { name: string }) {
         </svg>
       );
     default:
-      return <span>{p}</span>;
+      return null;
   }
 }

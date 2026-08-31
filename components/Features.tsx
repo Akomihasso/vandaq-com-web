@@ -1,17 +1,21 @@
+"use client";
+import { useLanguage } from "@/lib/i18n";
+
 export default function Features() {
+  const { content } = useLanguage();
+  const c = content.features;
+
   return (
     <section id="ozellikler" className="py-24 md:py-32 bg-app-bg">
       <div className="container-narrow">
         <div className="max-w-2xl mx-auto text-center space-y-4 mb-16">
-          <span className="chip mx-auto">Ne Yapıyoruz</span>
+          <span className="chip mx-auto">{c.chip}</span>
           <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight">
-            Sadece veri değil, <span className="text-primary">uygulanabilir strateji</span>.
+            {c.h2.pre} <span className="text-primary">{c.h2.highlight}</span>.
           </h2>
           <p className="text-on-surface-variant text-lg">
-            Dört ana modül, 6 temel veri kaynağından 100'ün üzerinde sinyal alınır ve şirketinize etkisi hesaplanır.
-            <br className="hidden md:block" />
-            Genel piyasa yorumları değil, şirkete özel veriler üretilir. Şirket karar vericileri bu özel veriler ile{" "}
-            <strong className="text-on-surface">risk veya fırsat sinyallerini görür, rekabet stratejilerine yön verirler.</strong>
+            {c.desc.pre}{" "}
+            <strong className="text-on-surface">{c.desc.strong}</strong>
           </p>
         </div>
 
@@ -19,57 +23,38 @@ export default function Features() {
           {/* Yayılım Haritası – büyük */}
           <div className="col-span-12 lg:col-span-8 glass-card rounded-3xl p-8 md:p-10 flex flex-col justify-between overflow-hidden relative">
             <div>
-              <FeatureIconCircle color="primary">
-                <PathIcon />
-              </FeatureIconCircle>
-              <h3 className="text-2xl md:text-3xl font-extrabold mt-6 mb-3">Veri Sinyalleri ve Yayılım Haritası</h3>
-              <p className="text-on-surface-variant max-w-lg leading-relaxed">
-                Yurt içinde veya yurt dışında firmanıza etki edebilecek herhangi bir sinyal geldiğinde, firmanızla ilgili hangi
-                bileşenlere, hangi büyüklükte, hangi zincir üzerinden ulaştığı görülebilir. Her bir düğüm (etki odağı) ve
-                kenar (etki derecesi) izlenebilir.
-              </p>
+              <FeatureIconCircle color="primary"><PathIcon /></FeatureIconCircle>
+              <h3 className="text-2xl md:text-3xl font-extrabold mt-6 mb-3">{c.modules.flow.title}</h3>
+              <p className="text-on-surface-variant max-w-lg leading-relaxed">{c.modules.flow.desc}</p>
             </div>
-            <FlowGraphic />
+            <FlowGraphic nodes={c.flowNodes} />
           </div>
 
-          {/* Maruziyet Detayı */}
+          {/* Firmaya Etki ve Derecesi */}
           <div className="col-span-12 md:col-span-6 lg:col-span-4 bg-white rounded-3xl p-8 border border-border-subtle">
-            <FeatureIconCircle color="secondary">
-              <InsightIcon />
-            </FeatureIconCircle>
-            <h3 className="text-xl font-bold mt-6 mb-3">Firmaya Etki ve Derecesi</h3>
-            <p className="text-on-surface-variant text-sm leading-relaxed">
-              Maliyet, Gelir, Talep ve Pazar, Teknoloji, Rekabet ve Regülasyon etkileri; pozitif ve negatif olarak her bir etki derecesi ölçüsünde görülür.
-            </p>
-            <ExposureBars />
+            <FeatureIconCircle color="secondary"><InsightIcon /></FeatureIconCircle>
+            <h3 className="text-xl font-bold mt-6 mb-3">{c.modules.exposure.title}</h3>
+            <p className="text-on-surface-variant text-sm leading-relaxed">{c.modules.exposure.desc}</p>
+            <ExposureBars rowLabels={c.exposureRows} />
           </div>
 
-          {/* Strateji Odası */}
+          {/* Senaryolar & Strateji */}
           <div className="col-span-12 md:col-span-6 lg:col-span-4 bg-white rounded-3xl p-8 border border-border-subtle">
-            <FeatureIconCircle color="warning">
-              <BrainIcon />
-            </FeatureIconCircle>
-            <h3 className="text-xl font-bold mt-6 mb-3">Senaryolar & Strateji</h3>
-            <p className="text-on-surface-variant text-sm leading-relaxed">
-              O ana kadar gelişmeler ışığında muhtemel senaryolar tahmin edilebilir. Yapay zekâ destekli aksiyon önerileri uygulamadan önce grafta simüle edilir; etki azaltma oranı sayısal olarak doğrulanır.
-            </p>
-            <StrategyTags />
+            <FeatureIconCircle color="warning"><BrainIcon /></FeatureIconCircle>
+            <h3 className="text-xl font-bold mt-6 mb-3">{c.modules.strategy.title}</h3>
+            <p className="text-on-surface-variant text-sm leading-relaxed">{c.modules.strategy.desc}</p>
+            <StrategyTags tags={c.strategyTags} />
           </div>
 
-          {/* IP İzleme – dark */}
+          {/* Rakip İzleme ve IP – dark */}
           <div className="col-span-12 lg:col-span-8 rounded-3xl p-8 md:p-10 bg-inverse-surface text-inverse-on-surface flex items-center justify-between overflow-hidden">
             <div className="max-w-md">
-              <FeatureIconCircle color="light">
-                <ShieldIcon />
-              </FeatureIconCircle>
-              <h3 className="text-2xl md:text-3xl font-extrabold mt-6 mb-3">Rakip İzleme ve IP</h3>
-              <p className="text-outline-variant leading-relaxed">
-                Rakipleriniz veya sektörünüzdeki gelişmeler, yeni ürün ve teknoloji lansmanları, halka açılmalar,
-                patent, marka ve tasarım başvuruları izlenir. Muhtemel tehdit ve fırsatlar sayısallaştırılarak sunulur.
-              </p>
+              <FeatureIconCircle color="light"><ShieldIcon /></FeatureIconCircle>
+              <h3 className="text-2xl md:text-3xl font-extrabold mt-6 mb-3">{c.modules.ip.title}</h3>
+              <p className="text-outline-variant leading-relaxed">{c.modules.ip.desc}</p>
             </div>
             <div className="hidden lg:block relative w-72 h-56 shrink-0">
-              <RadarGraphic />
+              <RadarGraphic labels={c.radarLabels} />
             </div>
           </div>
         </div>
@@ -77,20 +62,13 @@ export default function Features() {
         {/* What-if soru bloğu */}
         <div className="mt-14 rounded-3xl border border-primary/15 bg-gradient-to-br from-primary/5 to-secondary/5 p-8 md:p-10">
           <div className="mb-6">
-            <span className="chip">Kendinize Sorun</span>
+            <span className="chip">{c.whatif.chip}</span>
             <h3 className="text-xl md:text-2xl font-extrabold mt-4 tracking-tight">
-              VANDAQ-X bu soruların hepsini <span className="text-primary">sayısal olarak yanıtlar</span>
+              {c.whatif.h3.pre} <span className="text-primary">{c.whatif.h3.highlight}</span>
             </h3>
           </div>
           <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            {[
-              "Dolar %10 yükselirse kârlılığım nasıl etkilenir? Üretim maliyetim ve ihracat artışım ne olur?",
-              "Enerji fiyatları artarsa hangi ürün grubum daha fazla etkilenir?",
-              "Yeni bir AB düzenlemesi ihracatımı ve maliyetimi nasıl değiştirir?",
-              "Made in EU ile Çinli tedarikçim değişir mi? Tedarikçimi değiştirirsem riskim ne kadar azalır?",
-              "Hürmüz Boğazı krizi tedarik zincirim etkiler mi?",
-              "Rakibimin yeni patent başvurusu hangi ürün grubumu etkileyebilir?",
-            ].map((q) => (
+            {c.whatif.questions.map((q) => (
               <li key={q} className="flex items-start gap-3 bg-white/70 rounded-2xl px-4 py-3 border border-border-subtle text-sm text-on-surface leading-relaxed">
                 <span className="shrink-0 mt-0.5 w-5 h-5 rounded-full bg-primary/10 text-primary grid place-items-center text-xs font-bold">?</span>
                 {q}
@@ -103,13 +81,7 @@ export default function Features() {
   );
 }
 
-function FeatureIconCircle({
-  color,
-  children,
-}: {
-  color: "primary" | "secondary" | "warning" | "light";
-  children: React.ReactNode;
-}) {
+function FeatureIconCircle({ color, children }: { color: "primary" | "secondary" | "warning" | "light"; children: React.ReactNode }) {
   const cls = {
     primary: "bg-primary/10 text-primary",
     secondary: "bg-secondary/10 text-secondary",
@@ -152,64 +124,49 @@ function ShieldIcon() {
   );
 }
 
-function FlowGraphic() {
+function FlowGraphic({ nodes }: { nodes: string[] }) {
+  const positions = [
+    { x: 20, y: 140 },
+    { x: 220, y: 80 },
+    { x: 380, y: 55 },
+    { x: 620, y: 60 },
+  ];
   return (
-    <svg
-      className="mt-8 w-full"
-      viewBox="0 0 640 180"
-      preserveAspectRatio="none"
-      aria-hidden
-    >
+    <svg className="mt-8 w-full" viewBox="0 0 640 180" preserveAspectRatio="none" aria-hidden>
       <defs>
         <linearGradient id="fg" x1="0" x2="1">
           <stop offset="0" stopColor="#2c4cd7" stopOpacity="0.9" />
           <stop offset="1" stopColor="#6b38d4" stopOpacity="0.9" />
         </linearGradient>
       </defs>
-      <path
-        d="M20,140 C120,120 160,90 220,80 S320,40 380,55 S520,110 620,60"
-        stroke="url(#fg)"
-        strokeWidth="2.5"
-        fill="none"
-        strokeLinecap="round"
-      />
-      {[
-        { x: 20, y: 140, label: "İran-US Krizi" },
-        { x: 220, y: 80, label: "Hürmüz Boğazı" },
-        { x: 380, y: 55, label: "Tedarik Zinciri" },
-        { x: 620, y: 60, label: "Maliyet" },
-      ].map((n) => (
-        <g key={n.label}>
-          <circle cx={n.x} cy={n.y} r="7" fill="#fff" stroke="#2c4cd7" strokeWidth="2" />
-          <text x={n.x + 12} y={n.y - 8} fontSize="11" fill="#444655" fontWeight="600">
-            {n.label}
-          </text>
+      <path d="M20,140 C120,120 160,90 220,80 S320,40 380,55 S520,110 620,60" stroke="url(#fg)" strokeWidth="2.5" fill="none" strokeLinecap="round" />
+      {nodes.map((label, i) => (
+        <g key={label}>
+          <circle cx={positions[i].x} cy={positions[i].y} r="7" fill="#fff" stroke="#2c4cd7" strokeWidth="2" />
+          <text x={positions[i].x + 12} y={positions[i].y - 8} fontSize="11" fill="#444655" fontWeight="600">{label}</text>
         </g>
       ))}
     </svg>
   );
 }
 
-function ExposureBars() {
-  const rows = [
-    { label: "Maliyet", pos: 0, neg: 41 },
-    { label: "Gelir", pos: 62, neg: 0 },
-    { label: "Talep/Pazar", pos: 18, neg: 12 },
-    { label: "Teknoloji", pos: 0, neg: 14 },
-    { label: "Rekabet", pos: 0, neg: 18 },
-    { label: "Regülasyon", pos: 0, neg: 29 },
+function ExposureBars({ rowLabels }: { rowLabels: string[] }) {
+  const values = [
+    { pos: 0, neg: 41 },
+    { pos: 62, neg: 0 },
+    { pos: 18, neg: 12 },
+    { pos: 0, neg: 14 },
+    { pos: 0, neg: 18 },
+    { pos: 0, neg: 29 },
   ];
   return (
     <div className="mt-6 space-y-2.5">
-      {rows.map((r) => (
-        <div key={r.label} className="flex items-center gap-3 text-xs">
-          <span className="w-14 text-on-surface-variant">{r.label}</span>
+      {rowLabels.map((label, i) => (
+        <div key={label} className="flex items-center gap-3 text-xs">
+          <span className="w-14 text-on-surface-variant">{label}</span>
           <div className="flex-1 flex items-center h-4 rounded-full bg-surface-container-low overflow-hidden">
-            <div
-              className="h-full bg-danger/70"
-              style={{ width: `${r.neg}%`, marginLeft: `${50 - r.neg}%` }}
-            />
-            <div className="h-full bg-success/80" style={{ width: `${r.pos}%` }} />
+            <div className="h-full bg-danger/70" style={{ width: `${values[i].neg}%`, marginLeft: `${50 - values[i].neg}%` }} />
+            <div className="h-full bg-success/80" style={{ width: `${values[i].pos}%` }} />
           </div>
         </div>
       ))}
@@ -217,19 +174,11 @@ function ExposureBars() {
   );
 }
 
-function StrategyTags() {
-  const tags = [
-    { l: "Döviz artışı hızlanıyor → alacaklarını dövize endeksle", eff: "−14%" },
-    { l: "CBAM etkisi artıyor → yeşil kredi ile yatırım yap", eff: "−18%" },
-    { l: "Made in Europe geliyor → AB müşteri görüşmelerini artır", eff: "−9%" },
-  ];
+function StrategyTags({ tags }: { tags: Array<{ l: string; eff: string }> }) {
   return (
     <ul className="mt-6 space-y-2.5">
       {tags.map((t) => (
-        <li
-          key={t.l}
-          className="flex items-center justify-between text-xs bg-app-bg rounded-xl px-3 py-2.5 border border-border-subtle"
-        >
+        <li key={t.l} className="flex items-center justify-between text-xs bg-app-bg rounded-xl px-3 py-2.5 border border-border-subtle">
           <span className="truncate">{t.l}</span>
           <span className="text-success font-semibold shrink-0 ml-2">{t.eff}</span>
         </li>
@@ -238,12 +187,12 @@ function StrategyTags() {
   );
 }
 
-function RadarGraphic() {
+function RadarGraphic({ labels }: { labels: string[] }) {
   const signals = [
-    { cx: 150, cy: 60, r: 5, c: "#22C55E", label: "Rakip patent" },
-    { cx: 90, cy: 130, r: 4, c: "#F97316", label: "Halka açılıyor" },
-    { cx: 170, cy: 130, r: 6, c: "#E24B4A", label: "Yeni rakip giriyor" },
-    { cx: 60, cy: 70, r: 3, c: "#b9c3ff", label: "Marka tescili" },
+    { cx: 150, cy: 60, r: 5, c: "#22C55E" },
+    { cx: 90, cy: 130, r: 4, c: "#F97316" },
+    { cx: 170, cy: 130, r: 6, c: "#E24B4A" },
+    { cx: 60, cy: 70, r: 3, c: "#b9c3ff" },
   ];
   return (
     <svg viewBox="0 0 240 200" className="w-full h-full" aria-hidden>
@@ -257,7 +206,7 @@ function RadarGraphic() {
           <circle cx={d.cx} cy={d.cy} r={d.r + 6} fill={d.c} fillOpacity="0.18" />
           <circle cx={d.cx} cy={d.cy} r={d.r} fill={d.c} />
           <text x={d.cx + d.r + 8} y={d.cy + 4} fontSize="8" fill="#ffffff" fillOpacity="0.75">
-            {d.label}
+            {labels[i]}
           </text>
         </g>
       ))}

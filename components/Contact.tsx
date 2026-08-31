@@ -1,9 +1,12 @@
 "use client";
 import { useState } from "react";
+import { useLanguage } from "@/lib/i18n";
 
 type Status = "idle" | "sending" | "ok" | "error";
 
 export default function Contact() {
+  const { content } = useLanguage();
+  const c = content.contact;
   const [status, setStatus] = useState<Status>("idle");
   const [message, setMessage] = useState("");
 
@@ -20,24 +23,18 @@ export default function Contact() {
         body: JSON.stringify(data),
       });
       const json = await res.json();
-      if (!res.ok) throw new Error(json.error || "Beklenmeyen hata");
+      if (!res.ok) throw new Error(json.error || c.messages.genericError);
       if (json.emailError) {
         setStatus("error");
-        setMessage(
-          `Talebiniz kaydedildi ancak e-posta bildirimi gönderilemedi (${json.emailError}). Ekibimiz kayıt üzerinden size dönüş yapacaktır.`,
-        );
+        setMessage(c.messages.emailError.replace("{error}", json.emailError));
       } else {
         setStatus("ok");
-        setMessage(
-          json.userAckSent
-            ? "Talebiniz iletildi. E-posta adresinize teşekkür mesajı gönderdik."
-            : "Talebiniz iletildi. En kısa sürede dönüş yapacağız.",
-        );
+        setMessage(json.userAckSent ? c.messages.okWithAck : c.messages.okNoAck);
         form.reset();
       }
     } catch (err) {
       setStatus("error");
-      setMessage(err instanceof Error ? err.message : "Bir hata oluştu");
+      setMessage(err instanceof Error ? err.message : c.messages.genericError);
     }
   }
 
@@ -47,65 +44,65 @@ export default function Contact() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
           <div className="space-y-10">
             <div>
-              <span className="chip">İletişim</span>
+              <span className="chip">{c.chip}</span>
               <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mt-4">
-                <span className="text-primary">15 günlük ücretsiz</span> kullanımı deneyin
+                <span className="text-primary">{c.h2.primary}</span> {c.h2.rest}
               </h2>
-              <p className="text-on-surface-variant text-lg mt-4">
-                Firmanıza özel uygulamalar için bizimle iletişime geçiniz. En kısa sürede dönüş yapacağız.
-              </p>
+              <p className="text-on-surface-variant text-lg mt-4">{c.desc}</p>
             </div>
 
             <div className="space-y-6">
-              <ContactRow icon="mail" title="E-posta" value="bilgi@vandaq.com" href="mailto:bilgi@vandaq.com" />
-              <ContactRow icon="phone" title="Telefon / WhatsApp" value="+90 537 952 62 22" href="tel:+905379526222" />
-              <ContactRow icon="pin" title="Adres" value={<>Nispetiye Cad. No:6 Levent İş Merkezi<br/>Etiler, İstanbul</>} />
+              <ContactRow icon="mail" title={c.rows.email.title} value={c.rows.email.value} href={c.rows.email.href} />
+              <ContactRow icon="phone" title={c.rows.phone.title} value={c.rows.phone.value} href={c.rows.phone.href} />
+              <ContactRow icon="pin" title={c.rows.address.title} value={<>{c.rows.address.line1}<br />{c.rows.address.line2}</>} />
             </div>
           </div>
 
           <form onSubmit={onSubmit} className="bg-app-bg rounded-3xl p-8 border border-border-subtle shadow-xl space-y-5">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-              <Field name="name" label="Ad Soyad" placeholder="Adınız Soyadınız" required />
-              <Field name="email" type="email" label="E-posta" placeholder="ornek@sirket.com" required />
+              <Field name="name" label={c.form.name.label} placeholder={c.form.name.placeholder} required />
+              <Field name="email" type="email" label={c.form.email.label} placeholder={c.form.email.placeholder} required />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-              <Field name="company" label="Şirket" placeholder="Şirket adınız" />
+              <Field name="company" label={c.form.company.label} placeholder={c.form.company.placeholder} />
               <div>
-                <label className="block text-label text-on-surface-variant mb-2 uppercase tracking-wider">Konu</label>
+                <label className="block text-label text-on-surface-variant mb-2 uppercase tracking-wider">
+                  {c.form.subject.label}
+                </label>
                 <select
                   name="subject"
                   defaultValue="Bilgi"
                   className="w-full bg-white border border-border-subtle rounded-xl px-4 py-3 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all text-sm"
                 >
-                  <option>İş Birliği</option>
-                  <option>Bilgi</option>
-                  <option>Öneri</option>
-                  <option>Diğer</option>
+                  <option value="İş Birliği">{c.form.subject.options[0]}</option>
+                  <option value="Bilgi">{c.form.subject.options[1]}</option>
+                  <option value="Öneri">{c.form.subject.options[2]}</option>
+                  <option value="Diğer">{c.form.subject.options[3]}</option>
                 </select>
               </div>
             </div>
             <div>
-              <label className="block text-label text-on-surface-variant mb-2 uppercase tracking-wider">Mesajınız</label>
+              <label className="block text-label text-on-surface-variant mb-2 uppercase tracking-wider">
+                {c.form.message.label}
+              </label>
               <textarea
                 name="message"
                 rows={4}
                 required
-                placeholder="Size nasıl yardımcı olabiliriz?"
+                placeholder={c.form.message.placeholder}
                 className="w-full bg-white border border-border-subtle rounded-xl px-4 py-3 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all text-sm"
               />
             </div>
             <label className="flex items-start gap-3 text-xs text-on-surface-variant">
               <input type="checkbox" name="kvkk" required className="mt-0.5 w-4 h-4 rounded border-border-subtle" />
-              <span>
-                KVKK Aydınlatma Metni'ni okudum, iletişim bilgilerimin bu talep kapsamında işlenmesini kabul ediyorum.
-              </span>
+              <span>{c.form.kvkk}</span>
             </label>
             <button
               type="submit"
               disabled={status === "sending"}
               className="w-full btn-primary !rounded-2xl !py-4 disabled:opacity-60"
             >
-              {status === "sending" ? "Gönderiliyor..." : "Talebi Gönder"}
+              {status === "sending" ? c.form.submitting : c.form.submit}
             </button>
             {status === "ok" && (
               <div className="rounded-xl bg-success/10 text-success text-sm px-4 py-3">{message}</div>
@@ -121,17 +118,9 @@ export default function Contact() {
 }
 
 function Field({
-  name,
-  label,
-  placeholder,
-  type = "text",
-  required = false,
+  name, label, placeholder, type = "text", required = false,
 }: {
-  name: string;
-  label: string;
-  placeholder?: string;
-  type?: string;
-  required?: boolean;
+  name: string; label: string; placeholder?: string; type?: string; required?: boolean;
 }) {
   return (
     <div>
@@ -148,21 +137,13 @@ function Field({
 }
 
 function ContactRow({
-  icon,
-  title,
-  value,
-  href,
+  icon, title, value, href,
 }: {
-  icon: "mail" | "phone" | "pin";
-  title: string;
-  value: React.ReactNode;
-  href?: string;
+  icon: "mail" | "phone" | "pin"; title: string; value: React.ReactNode; href?: string;
 }) {
   const wrap = (children: React.ReactNode) =>
     href ? (
-      <a href={href} className="text-on-surface hover:text-primary transition-colors">
-        {children}
-      </a>
+      <a href={href} className="text-on-surface hover:text-primary transition-colors">{children}</a>
     ) : (
       <span className="text-on-surface">{children}</span>
     );

@@ -1,43 +1,20 @@
-const items = [
-  {
-    sector: "TEKSTİL İHRACATÇISI",
-    signal: "DÖVİZ KURU SİNYALİ",
-    quote:
-      "EUR/TRY paritesindeki ani dalgalanmalar ve pamuk fiyatlarındaki artış sinyallerini VANDAQ-X sayesinde piyasadan önce aldık. Alacaklarımızı dövize endeksleyip hammadde tedarikimizi erkene çekerek çeyrek bazlı kârlılığımızı koruduk.",
-  },
-  {
-    sector: "ALÜMİNYUM ÜRETİCİSİ",
-    signal: "CBAM / KARBON VERGİSİ SİNYALİ",
-    quote:
-      "CBAM ve COP31 kapsamındaki ek maliyet risklerini VANDAQ-X ile simüle ettik. Yeşil kredi imkânlarını kullanarak yaptığımız yatırım sayesinde AB pazarındaki rekabet gücümüzü kaybetmedik.",
-  },
-  {
-    sector: "OTOMOTİV YAN SANAYİ",
-    signal: "MADE IN EU SİNYALİ",
-    quote:
-      "AB'nin Made in EU düzenlemesi henüz taslak aşamasındayken VANDAQ-X'in regülasyon sinyalleri sayesinde durumdan haberdar olduk. Tedarik zincirimizi ve yerlilik oranımızı hızla revize ederek Avrupalı ana sanayi müşterilerimizle sözleşmelerimizi riske atmadık.",
-  },
-  {
-    sector: "LOJİSTİK FİRMASI",
-    signal: "HÜRMÜZ BOĞAZI / JEOPOLİTİK KRİZ SİNYALİ",
-    quote:
-      "Hürmüz Boğazı'ndaki gerilimin navlun ve yakıt maliyetlerimize zincirleme etkisini VANDAQ-X ile sayısallaştırdık. Alternatif rota ve kontratlı navlun anlaşmalarına erken geçerek müşterilerimize kesintisiz hizmet sunduk.",
-  },
-];
+"use client";
+import { useLanguage } from "@/lib/i18n";
 
 export default function Testimonials() {
+  const { content } = useLanguage();
+  const c = content.testimonials;
+
   return (
     <section className="py-24 md:py-32 bg-app-bg overflow-hidden">
       <div className="container-narrow">
         <div className="max-w-2xl mx-auto text-center space-y-4 mb-16">
-          <span className="chip mx-auto">Referanslar</span>
-          <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight">
-            Somut kararlar, ölçülebilir sonuçlar
-          </h2>
+          <span className="chip mx-auto">{c.chip}</span>
+          <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight">{c.h2}</h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {items.map((t) => (
+          {c.items.map((t) => (
             <figure
               key={t.sector}
               className="rounded-3xl bg-white border border-border-subtle p-8 flex flex-col justify-between hover:shadow-xl hover:shadow-primary/5 transition-all"

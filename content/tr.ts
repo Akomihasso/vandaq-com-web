@@ -1,0 +1,247 @@
+const tr = {
+  nav: {
+    links: [
+      { href: "#izleme", label: "Global İzleme" },
+      { href: "#ozellikler", label: "Teknolojik Üstünlük" },
+      { href: "#nasil-calisir", label: "Nasıl Çalışır" },
+      { href: "#fiyatlandirma", label: "Fiyatlandırma" },
+      { href: "#iletisim", label: "İletişim" },
+    ],
+    cta: "VANDAQ-X'e Git",
+  },
+  hero: {
+    chip: "Rekabet İstihbarat Teknolojisi Aktif",
+    h1: { plain: "Şirketinizi etkileyecek", highlight: "gelişmeleri önceden görün" },
+    desc: {
+      pre: "VANDAQ; para piyasaları, enerji, jeopolitik, iklim ve regülasyon sinyallerini",
+      strong: "şirketinizin dijital ikizi",
+      mid: "üzerinde işler; genel yorumlar yerine",
+      em: "size özel",
+      post: "sayısal etki ve strateji üretir.",
+    },
+    ctaPrimary: "15 Gün Ücretsiz Dene",
+    ctaGhost: "Nasıl Çalıştığını İzle",
+    disclaimer: "Kredi kartı gerekmez • KVKK/GDPR uyumlu • İstediğiniz zaman iptal",
+    liveSignal: "Canlı Sinyal Akışı",
+    compositeIndex: "Bileşik İndeks",
+    kpi: {
+      cvi: { subtitle: "Kurumsal Kırılganlık", title: "Kurumsal Kırılganlık İndeksi (CVI)", desc: "EDI, TDI, CSI ve GRI'nin ağırlıklı ortalaması. Şirketinizin dış şoklara karşı genel kırılganlığını 0–1 aralığında ölçer. Düşük değer daha güçlü direnç demektir." },
+      edi: { subtitle: "Ekonomik Bağımlılık", title: "Ekonomik Bağımlılık İndeksi (EDI)", desc: "Döviz, faiz, enerji ve emtia gibi ekonomik değişkenlere bağımlılık düzeyinizi gösterir." },
+      tdi: { subtitle: "Teknoloji Bağımlılık", title: "Teknoloji Bağımlılık İndeksi (TDI)", desc: "Kritik yazılım, donanım ve dijital altyapılara olan bağımlılığınızı ölçer; teknoloji riskini özetler." },
+      csi: { subtitle: "İklim Duyarlılık", title: "İklim Duyarlılık İndeksi (CSI)", desc: "İklim olayları ve çevresel risklerin (kuraklık, sel, afet, karbon mevzuatı) şirketinize etki yoğunluğu." },
+      gri: { subtitle: "Jeopolitik Risk", title: "Jeopolitik Risk İndeksi (GRI)", desc: "Savaş, ambargo, ticaret koridoru kesintileri ve rejim değişiklikleri gibi jeopolitik risklerin firmanıza etki yoğunluğu." },
+    },
+  },
+  monitoring: {
+    chip: "Tüm Sinyalleri İzliyoruz",
+    h2: {
+      pre: "Şirketiniz ile ilgili olabilecek",
+      highlight: "en önemli sinyalleri",
+      post: "izliyor ve şirketinize etkisini ölçüyoruz.",
+    },
+    desc: "Döviz, faiz, enerji, emtia, jeopolitik ve regülasyon değişikliklerinin şirketinizin maliyetlerini, gelirlerini, tedarik zincirini ve rekabet gücünüzü nasıl etkileyeceğini değerlendirin. VANDAQ-X haber kanalı değil; aynı haberi herkes okuyor, VANDAQ-X size o haberin veya bir değişim sinyalinin sizin firmanıza özel karşılığını, risk derecesini, ne zaman geleceğini ve ne yapmanız gerektiğini söylüyor.",
+    categories: [
+      { icon: "coin", title: "Para Piyasaları", desc: "Döviz kurları, faiz, tahvil getirileri, altın, Bitcoin, borsalar ve küresel likidite akışları.", color: "primary" },
+      { icon: "leaf", title: "Enerji & Emtia", desc: "Petrol, doğalgaz, elektrik, bakır, çelik, alüminyum, kritik elementler ve tarımsal emtia volatilitesi.", color: "warning" },
+      { icon: "globe", title: "Jeopolitik & Savaşlar", desc: "Çatışmalar, ambargolar, ticaret gerilimleri, yeni ittifaklar ve tedarik zinciri koridorları.", color: "secondary" },
+      { icon: "gavel", title: "Vergi & Regülasyon", desc: "CBAM, COP31, karbon vergisi, Made in Europe, Amerikan Gümrük Vergileri, ek vergi, KDV ve sektörel düzenlemeler.", color: "success" },
+      { icon: "cloud", title: "İklim & Doğal Olaylar", desc: "Deprem, kuraklık, sel, tayfun, orman yangını ve tarım/lojistik etkileri.", color: "info" },
+      { icon: "patent", title: "Rakip & IP Sinyalleri", desc: "Halka arz, satın almalar, konkordato, iflas, patent, marka ve yeni ürün duyuruları.", color: "danger" },
+    ],
+    banner: {
+      label: "24/7 Kesintisiz Analiz",
+      h3: "Sinyal geldiği anda, etkisi hesaplanır. Kritik eşik aşılınca bildirim size ulaşır.",
+      stats: [
+        { label: "Sinyal Kaynağı", value: "120+" },
+        { label: "Ort. Tepki", value: "<3 sn" },
+        { label: "Sunucu Uptime", value: "%99.9" },
+      ],
+    },
+  },
+  features: {
+    chip: "Ne Yapıyoruz",
+    h2: { pre: "Sadece veri değil,", highlight: "uygulanabilir strateji" },
+    desc: {
+      pre: "Dört ana modül, 6 temel veri kaynağından 100'ün üzerinde sinyal alınır ve şirketinize etkisi hesaplanır. Genel piyasa yorumları değil, şirkete özel veriler üretilir. Şirket karar vericileri bu özel veriler ile",
+      strong: "risk veya fırsat sinyallerini görür, rekabet stratejilerine yön verirler.",
+    },
+    modules: {
+      flow: { title: "Veri Sinyalleri ve Yayılım Haritası", desc: "Yurt içinde veya yurt dışında firmanıza etki edebilecek herhangi bir sinyal geldiğinde, firmanızla ilgili hangi bileşenlere, hangi büyüklükte, hangi zincir üzerinden ulaştığı görülebilir. Her bir düğüm (etki odağı) ve kenar (etki derecesi) izlenebilir." },
+      exposure: { title: "Firmaya Etki ve Derecesi", desc: "Maliyet, Gelir, Talep ve Pazar, Teknoloji, Rekabet ve Regülasyon etkileri; pozitif ve negatif olarak her bir etki derecesi ölçüsünde görülür." },
+      strategy: { title: "Senaryolar & Strateji", desc: "O ana kadar gelişmeler ışığında muhtemel senaryolar tahmin edilebilir. Yapay zekâ destekli aksiyon önerileri uygulamadan önce grafta simüle edilir; etki azaltma oranı sayısal olarak doğrulanır." },
+      ip: { title: "Rakip İzleme ve IP", desc: "Rakipleriniz veya sektörünüzdeki gelişmeler, yeni ürün ve teknoloji lansmanları, halka açılmalar, patent, marka ve tasarım başvuruları izlenir. Muhtemel tehdit ve fırsatlar sayısallaştırılarak sunulur." },
+    },
+    flowNodes: ["İran-US Krizi", "Hürmüz Boğazı", "Tedarik Zinciri", "Maliyet"],
+    exposureRows: ["Maliyet", "Gelir", "Talep/Pazar", "Teknoloji", "Rekabet", "Regülasyon"],
+    strategyTags: [
+      { l: "Döviz artışı hızlanıyor → alacaklarını dövize endeksle", eff: "−14%" },
+      { l: "CBAM etkisi artıyor → yeşil kredi ile yatırım yap", eff: "−18%" },
+      { l: "Made in Europe geliyor → AB müşteri görüşmelerini artır", eff: "−9%" },
+    ],
+    radarLabels: ["Rakip patent", "Halka açılıyor", "Yeni rakip giriyor", "Marka tescili"],
+    whatif: {
+      chip: "Kendinize Sorun",
+      h3: { pre: "VANDAQ-X bu soruların hepsini", highlight: "sayısal olarak yanıtlar" },
+      questions: [
+        "Dolar %10 yükselirse kârlılığım nasıl etkilenir? Üretim maliyetim ve ihracat artışım ne olur?",
+        "Enerji fiyatları artarsa hangi ürün grubum daha fazla etkilenir?",
+        "Yeni bir AB düzenlemesi ihracatımı ve maliyetimi nasıl değiştirir?",
+        "Made in EU ile Çinli tedarikçim değişir mi? Tedarikçimi değiştirirsem riskim ne kadar azalır?",
+        "Hürmüz Boğazı krizi tedarik zincirim etkiler mi?",
+        "Rakibimin yeni patent başvurusu hangi ürün grubumu etkileyebilir?",
+      ],
+    },
+  },
+  howItWorks: {
+    chip: "Nasıl Çalışır",
+    h2: { pre: "Dört katman, tek bir", highlight: "bilgi akışı" },
+    desc: "Kullanıcının firma profilinden başlar, sinyalleri işler ve size özel stratejiye ulaşır.",
+    steps: [
+      { n: "01", title: "Firmanızın Temel Yapısı ve Risk Alanlarını Belirleyin", desc: "Firmanız için önemli olabilecek dünyadaki gelişmeleri değerlendirebilmek için sır olmayan bilgiler, izlenmesi ve değerlendirilmesi elzem olan veriler ve sinyaller belirlenir." },
+      { n: "02", title: "Veri Sinyalleri Sürekli Akar", desc: "Merkez bankaları ve kurlar, enerji ajansı verileri, borsalar, emtia fiyatları, ekonomik haber kanalları, regülasyon ve düzenlemeler, patent ve marka ofisleri, siyasi olay ve kararlar olmak üzere 100'den fazla veri sinyali 7/24 toplanır ve heterojen olay olarak sayısallaştırılır." },
+      { n: "03", title: "Her Veri Sinyalinin Firmaya Göre Etkisi Hesaplanır", desc: "VANDAQ-X sisteminin can alıcı yanlarından biri olan ve sistem mantığı patent başvurusu ile korunan formüller ile zincirleme etkiler hesaplanır. Her sinyalin firmaya göre farklı pozitif veya negatif etkisi ile etki derecesi sayısallaştırılır ve riskler belirlenir." },
+      { n: "04", title: "Senaryolar ve Strateji Önerisi", desc: "Firma için toplanan veriler ile muhtemel senaryolar üretilebilir; kritik eşik aşılırsa yapay zeka destekli öneriler ve simülasyonlar yapılır. \"Bu strateji maliyet etkisini %28 düşürür\" gibi somut sonuçlar üretilebilir." },
+    ],
+    compositeIndexBadge: "Bileşik İndeks",
+    compositeIndexLabel: "CVI İndeksi",
+    compositeIndexDesc: "Kurumsal Kırılganlık — EDI + TDI + CSI + GRI ağırlıklı ortalaması",
+    subIndices: [
+      { l: "EDI İndeksi", d: "Ekonomik Bağımlılık" },
+      { l: "TDI İndeksi", d: "Teknoloji Bağımlılık" },
+      { l: "CSI İndeksi", d: "İklim Duyarlılık" },
+      { l: "GRI İndeksi", d: "Jeopolitik Risk" },
+    ],
+  },
+  testimonials: {
+    chip: "Referanslar",
+    h2: "Somut kararlar, ölçülebilir sonuçlar",
+    items: [
+      { sector: "TEKSTİL İHRACATÇISI", signal: "DÖVİZ KURU SİNYALİ", quote: "EUR/TRY paritesindeki ani dalgalanmalar ve pamuk fiyatlarındaki artış sinyallerini VANDAQ-X sayesinde piyasadan önce aldık. Alacaklarımızı dövize endeksleyip hammadde tedarikimizi erkene çekerek çeyrek bazlı kârlılığımızı koruduk." },
+      { sector: "ALÜMİNYUM ÜRETİCİSİ", signal: "CBAM / KARBON VERGİSİ SİNYALİ", quote: "CBAM ve COP31 kapsamındaki ek maliyet risklerini VANDAQ-X ile simüle ettik. Yeşil kredi imkânlarını kullanarak yaptığımız yatırım sayesinde AB pazarındaki rekabet gücümüzü kaybetmedik." },
+      { sector: "OTOMOTİV YAN SANAYİ", signal: "MADE IN EU SİNYALİ", quote: "AB'nin Made in EU düzenlemesi henüz taslak aşamasındayken VANDAQ-X'in regülasyon sinyalleri sayesinde durumdan haberdar olduk. Tedarik zincirimizi ve yerlilik oranımızı hızla revize ederek Avrupalı ana sanayi müşterilerimizle sözleşmelerimizi riske atmadık." },
+      { sector: "LOJİSTİK FİRMASI", signal: "HÜRMÜZ BOĞAZI / JEOPOLİTİK KRİZ SİNYALİ", quote: "Hürmüz Boğazı'ndaki gerilimin navlun ve yakıt maliyetlerimize zincirleme etkisini VANDAQ-X ile sayısallaştırdık. Alternatif rota ve kontratlı navlun anlaşmalarına erken geçerek müşterilerimize kesintisiz hizmet sunduk." },
+    ],
+  },
+  pricing: {
+    chip: "Fiyatlandırma",
+    h2: { pre: "Şirketinizin ölçeğine göre", highlight: "esnek planlar" },
+    trialBadge: "15 gün ücretsiz deneme · Kart gerektirmez",
+    plans: [
+      {
+        name: "Başlangıç", price: "95", period: "Euro/ay", priceSub: undefined as string | undefined,
+        ctaType: "app" as "app" | "contact", cta: "Hemen Başla", highlight: false,
+        features: ["Kurumsal kırılganlık indeksi (CVI)", "+4 Temel kırılganlık indeksi", "Maliyet Etkisi izlenmesi", "Gelir Etkisi izlenmesi", "Talep Etkisi izlenmesi", "TCMB döviz + emtia sinyal akışları", "3 Kritik olay grubu sinyalinin anında bildirimi", "Haftalık Rapor", "E-Posta bildirimi"],
+      },
+      {
+        name: "Profesyonel", price: "175", period: "Euro/ay", priceSub: undefined as string | undefined,
+        ctaType: "app" as "app" | "contact", cta: "15 Gün Ücretsiz Dene", highlight: true,
+        features: ["Kurumsal kırılganlık indeksi (CVI)", "+4 Temel kırılganlık indeksi", "Maliyet Etkisi izlenmesi", "Gelir Etkisi izlenmesi", "Jeopolitik Etkisi izlenmesi", "Tedarik Etkisi izlenmesi", "Rekabet ve IP etkisi izlenmesi", "Regülasyon etkisi izlenmesi", "TCMB döviz + emtia sinyal akışları", "Tüm diğer sinyal akışlarının izlenmesi", "9 Kritik olay grubunun sinyalinin anında bildirimi", "Senaryo ve Strateji üretimi", "Haftalık Rapor", "PDF Raporu", "E-Posta bildirimi"],
+      },
+      {
+        name: "Profesyonel + Ek Kullanıcı", price: "175", period: "Euro/ay", priceSub: "+ 35 Euro/kullanıcı" as string | undefined,
+        ctaType: "contact" as "app" | "contact", cta: "İletişime Geç", highlight: false,
+        features: ["Kurumsal kırılganlık indeksi (CVI)", "+4 Temel kırılganlık indeksi", "Maliyet Etkisi izlenmesi", "Gelir Etkisi izlenmesi", "Jeopolitik Etkisi izlenmesi", "Tedarik Etkisi izlenmesi", "Rekabet ve IP etkisi izlenmesi", "Regülasyon etkisi izlenmesi", "TCMB döviz + emtia sinyal akışları", "Tüm diğer sinyal akışlarının izlenmesi", "9 Kritik olay grubunun sinyalinin anında bildirimi", "Senaryo ve Strateji üretimi", "Haftalık Rapor", "PDF Raporu", "E-Posta bildirimi"],
+      },
+      {
+        name: "Grup Şirketleri", price: "175", period: "Euro/ay", priceSub: "+ 35 €/kullanıcı × 0,35 ek şirket" as string | undefined,
+        ctaType: "contact" as "app" | "contact", cta: "İletişime Geç", highlight: false,
+        features: ["Kurumsal kırılganlık indeksi (CVI)", "+4 Temel kırılganlık indeksi", "Maliyet Etkisi izlenmesi", "Gelir Etkisi izlenmesi", "Jeopolitik Etkisi izlenmesi", "Tedarik Etkisi izlenmesi", "Rekabet ve IP etkisi izlenmesi", "Regülasyon etkisi izlenmesi", "TCMB döviz + emtia sinyal akışları", "Tüm diğer sinyal akışlarının izlenmesi", "9 Kritik olay grubunun sinyalinin anında bildirimi", "Senaryo ve Strateji üretimi", "Haftalık Rapor", "PDF Raporu", "E-Posta bildirimi"],
+      },
+    ],
+    footerNote: "Tüm fiyatlara KDV dahil değildir. Yıllık ödemede %15 indirim.",
+  },
+  about: {
+    chip: "VANDAQ Nedir?",
+    h2: { pre: "Sektör yorumu değil,", highlight: "firmaya özel etki ölçümü" },
+    para1: "VANDAQ, global rekabet ortamında yurt içinde ve yurt dışında gelişen olayların firmanın rekabetine etki derecesini ölçmek için 100'den fazla veri kaynağını takip eden, firmaya pozitif ve negatif, doğrudan veya dolaylı etkisini hesaplayan bir firma dijital ikiz projesidir.",
+    para2: "Tüm dünyada yapılan genel ekonomik, sektörel veya belli bir bölgeye özgü tahminlerden öte firmaya özel etki derecesi ölçülmektedir. Firma, bu sayede piyasadan çok önce bazı etki sinyallerini alıp rekabet stratejisini geliştirmekte, risklerden korunmakta, fırsatlardan faydalanabilmektedir.",
+    para3: {
+      pre: "VANDAQ, bilindiği kadarıyla dünyada ilk olan bu teknolojinin ilk piyasa uygulaması olan ve sistemi ile yöntemi",
+      strong: "patent hakları ile korunan VANDAQ-X",
+      post: "projesinin yürütücüsüdür.",
+    },
+    stats: [
+      { value: "100+", label: "Veri kaynağı" },
+      { value: "6", label: "Ana sinyal grubu" },
+      { value: "6", label: "Firmaya etki grubu" },
+      { value: "4 + CVI", label: "İndeks (bileşik + alt)" },
+    ],
+    tech: {
+      label: "Teknolojimiz",
+      title: "Dijital İkiz Firma ile Rekabet İstihbaratı",
+      items: [
+        { title: "Gerçek Zamanlı Yayılım", body: "100'den fazla veri sinyali ile heterojen olaylarda zincirleme etki hesabı." },
+        { title: "Firma Bazında Etki ve Derecelendirme", body: "Veri sinyallerinin firmadan firmaya değişen etkisinin hesaplanması ve firmaya özgü gerçeğe yakın etki şiddetinin tahmini." },
+        { title: "Senaryo ve Strateji Üretimi", body: "Gerçek veriler ile gerçeğe yakın senaryolar ve yapay zeka destekli strateji ve karar destek sistemi." },
+        { title: "Hibrit Entegrasyon", body: "Sadece para piyasaları, emtialar ve borsalar değil; jeopolitik gelişmeler, regülasyonlar, iklim ve tabiat olaylarının API bağlantıları ile anlık veri elde edilmesi ve hibrit olarak hesaba katılması." },
+      ],
+    },
+  },
+  contact: {
+    chip: "İletişim",
+    h2: { primary: "15 günlük ücretsiz", rest: "kullanımı deneyin" },
+    desc: "Firmanıza özel uygulamalar için bizimle iletişime geçiniz. En kısa sürede dönüş yapacağız.",
+    rows: {
+      email: { title: "E-posta", value: "bilgi@vandaq.com", href: "mailto:bilgi@vandaq.com" },
+      phone: { title: "Telefon / WhatsApp", value: "+90 537 952 62 22", href: "tel:+905379526222" },
+      address: { title: "Adres", line1: "Nispetiye Cad. No:6 Levent İş Merkezi", line2: "Etiler, İstanbul" },
+    },
+    form: {
+      name: { label: "Ad Soyad", placeholder: "Adınız Soyadınız" },
+      email: { label: "E-posta", placeholder: "ornek@sirket.com" },
+      company: { label: "Şirket", placeholder: "Şirket adınız" },
+      subject: { label: "Konu", options: ["İş Birliği", "Bilgi", "Öneri", "Diğer"] },
+      message: { label: "Mesajınız", placeholder: "Size nasıl yardımcı olabiliriz?" },
+      kvkk: "KVKK Aydınlatma Metni'ni okudum, iletişim bilgilerimin bu talep kapsamında işlenmesini kabul ediyorum.",
+      submit: "Talebi Gönder",
+      submitting: "Gönderiliyor...",
+    },
+    messages: {
+      okWithAck: "Talebiniz iletildi. E-posta adresinize teşekkür mesajı gönderdik.",
+      okNoAck: "Talebiniz iletildi. En kısa sürede dönüş yapacağız.",
+      emailError: "Talebiniz kaydedildi ancak e-posta bildirimi gönderilemedi ({error}). Ekibimiz kayıt üzerinden size dönüş yapacaktır.",
+      genericError: "Bir hata oluştu",
+    },
+  },
+  footer: {
+    tagline: "Kurumsal Dijital İkiz ve Stratejik Etki Analiz Platformu. Dışarıdaki her sinyalin, sizin şirketinize ne kadar dokunduğunu somut olarak hesaplıyoruz.",
+    appLink: "VANDAQ-X uygulamasına git",
+    platform: {
+      title: "Platform",
+      links: [
+        { l: "Global İzleme", h: "#izleme" },
+        { l: "Teknolojik Üstünlük", h: "#ozellikler" },
+        { l: "Nasıl Çalışır", h: "#nasil-calisir" },
+        { l: "Fiyatlandırma", h: "#fiyatlandirma" },
+      ],
+    },
+    corporate: {
+      title: "Kurumsal",
+      links: [
+        { l: "Hakkımızda", h: "#hakkinda" },
+        { l: "İletişim", h: "#iletisim" },
+        { l: "Gizlilik Politikası", h: "/gizlilik" },
+        { l: "KVKK", h: "/kvkk" },
+        { l: "Kullanım Koşulları", h: "/kosullar" },
+      ],
+    },
+    copyright: "Tüm hakları saklıdır.",
+    patent: "VANDAQ, dünyada ilk ve tek olan patentli VANDAQ-X projesinin yürütücüsüdür.",
+  },
+  logoStrip: {
+    label: "Kimler için tasarlandı",
+    items: [
+      "İhracatçı İmalatçılar",
+      "AB Pazarına Satan Üreticiler",
+      "Otomotiv Yan Sanayii",
+      "Tekstil & Konfeksiyon",
+      "Makine & Enerji",
+      "CFO'lar & Strateji Ekipleri",
+      "Yönetim Danışmanları",
+      "Bankalar & Krediyi Değerleyenler",
+    ],
+  },
+};
+
+export type SiteContent = typeof tr;
+export default tr;

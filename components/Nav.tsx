@@ -2,18 +2,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useLanguage } from "@/lib/i18n";
 
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "https://vandaq-x.com";
 
-const links = [
-  { href: "#izleme", label: "Global İzleme" },
-  { href: "#ozellikler", label: "Teknolojik Üstünlük" },
-  { href: "#nasil-calisir", label: "Nasıl Çalışır" },
-  { href: "#fiyatlandirma", label: "Fiyatlandırma" },
-  { href: "#iletisim", label: "İletişim" },
-];
-
 export default function Nav() {
+  const { lang, setLang, content } = useLanguage();
+  const c = content.nav;
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -46,7 +41,7 @@ export default function Nav() {
         </Link>
 
         <nav className="hidden md:flex items-center gap-8">
-          {links.map((l) => (
+          {c.links.map((l) => (
             <a
               key={l.href}
               href={l.href}
@@ -58,13 +53,22 @@ export default function Nav() {
         </nav>
 
         <div className="flex items-center gap-3">
+          <button
+            onClick={() => setLang(lang === "tr" ? "en" : "tr")}
+            className="hidden md:flex items-center gap-1 text-xs font-bold tracking-widest text-on-surface-variant hover:text-primary transition-colors border border-border-subtle rounded-lg px-2.5 py-1.5"
+            aria-label={lang === "tr" ? "Switch to English" : "Türkçeye geç"}
+          >
+            <span className={lang === "tr" ? "text-primary" : "text-on-surface-variant/50"}>TR</span>
+            <span className="text-on-surface-variant/30 mx-0.5">/</span>
+            <span className={lang === "en" ? "text-primary" : "text-on-surface-variant/50"}>EN</span>
+          </button>
           <a
             href={APP_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="btn-primary text-sm !px-5 !py-2.5"
           >
-            VANDAQ-X'e Git
+            {c.cta}
             <ArrowIcon />
           </a>
           <button
@@ -80,7 +84,7 @@ export default function Nav() {
       {open && (
         <div className="md:hidden bg-white border-t border-border-subtle">
           <div className="container-narrow py-4 flex flex-col gap-2">
-            {links.map((l) => (
+            {c.links.map((l) => (
               <a
                 key={l.href}
                 href={l.href}
@@ -90,6 +94,12 @@ export default function Nav() {
                 {l.label}
               </a>
             ))}
+            <button
+              onClick={() => { setLang(lang === "tr" ? "en" : "tr"); setOpen(false); }}
+              className="mt-2 text-left py-2 text-sm font-bold text-on-surface-variant hover:text-primary"
+            >
+              {lang === "tr" ? "Switch to English" : "Türkçeye geç"}
+            </button>
           </div>
         </div>
       )}

@@ -1,37 +1,31 @@
+"use client";
+import { useLanguage } from "@/lib/i18n";
+
 export default function About() {
+  const { content } = useLanguage();
+  const c = content.about;
+
   return (
     <section id="hakkinda" className="py-24 md:py-32 bg-app-bg">
       <div className="container-narrow">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div className="space-y-6">
-            <span className="chip">VANDAQ Nedir?</span>
+            <span className="chip">{c.chip}</span>
             <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight">
-              Sektör yorumu değil, <span className="text-primary">firmaya özel etki ölçümü</span>.
+              {c.h2.pre} <span className="text-primary">{c.h2.highlight}</span>.
             </h2>
-            <p className="text-lg text-on-surface-variant leading-relaxed">
-              VANDAQ, global rekabet ortamında yurt içinde ve yurt dışında gelişen olayların firmanın rekabetine
-              etki derecesini ölçmek için 100&apos;den fazla veri kaynağını takip eden, firmaya pozitif ve
-              negatif, doğrudan veya dolaylı etkisini hesaplayan bir firma dijital ikiz projesidir.
-            </p>
+            <p className="text-lg text-on-surface-variant leading-relaxed">{c.para1}</p>
+            <p className="text-on-surface-variant leading-relaxed">{c.para2}</p>
             <p className="text-on-surface-variant leading-relaxed">
-              Tüm dünyada yapılan genel ekonomik, sektörel veya belli bir bölgeye özgü tahminlerden öte
-              firmaya özel etki derecesi ölçülmektedir. Firma, bu sayede piyasadan çok önce bazı etki
-              sinyallerini alıp rekabet stratejisini geliştirmekte, risklerden korunmakta, fırsatlardan
-              faydalanabilmektedir.
-            </p>
-            <p className="text-on-surface-variant leading-relaxed">
-              VANDAQ, bilindiği kadarıyla dünyada ilk olan bu teknolojinin ilk piyasa uygulaması olan ve
-              sistemi ile yöntemi{" "}
-              <strong className="text-on-surface">patent hakları ile korunan VANDAQ-X</strong>{" "}
-              projesinin yürütücüsüdür.
+              {c.para3.pre}{" "}
+              <strong className="text-on-surface">{c.para3.strong}</strong>{" "}
+              {c.para3.post}
             </p>
 
-            {/* Sayısal özet */}
             <div className="grid grid-cols-2 gap-4 pt-4">
-              <StatTile value="100+" label="Veri kaynağı" />
-              <StatTile value="6" label="Ana sinyal grubu" />
-              <StatTile value="6" label="Firmaya etki grubu" />
-              <StatTile value="4 + CVI" label="İndeks (bileşik + alt)" />
+              {c.stats.map((s) => (
+                <StatTile key={s.label} value={s.value} label={s.label} />
+              ))}
             </div>
           </div>
 
@@ -40,26 +34,12 @@ export default function About() {
               <div className="absolute -right-16 -bottom-16 w-64 h-64 rounded-full bg-primary/30 blur-3xl" />
               <div className="absolute -left-16 -top-16 w-56 h-56 rounded-full bg-secondary/30 blur-3xl" />
               <div className="relative">
-                <div className="text-white/60 text-xs uppercase tracking-[0.18em] mb-2">Teknolojimiz</div>
-                <h3 className="text-2xl font-extrabold mb-6">Dijital İkiz Firma ile Rekabet İstihbaratı</h3>
-
+                <div className="text-white/60 text-xs uppercase tracking-[0.18em] mb-2">{c.tech.label}</div>
+                <h3 className="text-2xl font-extrabold mb-6">{c.tech.title}</h3>
                 <ul className="space-y-5">
-                  <TechItem
-                    title="Gerçek Zamanlı Yayılım"
-                    body="100'den fazla veri sinyali ile heterojen olaylarda zincirleme etki hesabı."
-                  />
-                  <TechItem
-                    title="Firma Bazında Etki ve Derecelendirme"
-                    body="Veri sinyallerinin firmadan firmaya değişen etkisinin hesaplanması ve firmaya özgü gerçeğe yakın etki şiddetinin tahmini."
-                  />
-                  <TechItem
-                    title="Senaryo ve Strateji Üretimi"
-                    body="Gerçek veriler ile gerçeğe yakın senaryolar ve yapay zeka destekli strateji ve karar destek sistemi."
-                  />
-                  <TechItem
-                    title="Hibrit Entegrasyon"
-                    body="Sadece para piyasaları, emtialar ve borsalar değil; jeopolitik gelişmeler, regülasyonlar, iklim ve tabiat olaylarının API bağlantıları ile anlık veri elde edilmesi ve hibrit olarak hesaba katılması."
-                  />
+                  {c.tech.items.map((item) => (
+                    <TechItem key={item.title} title={item.title} body={item.body} />
+                  ))}
                 </ul>
               </div>
             </div>
