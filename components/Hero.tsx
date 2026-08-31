@@ -74,7 +74,7 @@ export default function Hero() {
 
             <div className="flex items-stretch gap-2 md:gap-3">
               {/* CVI — sol, bileşik */}
-              <div className="relative flex-none w-[120px] md:w-[140px] pt-4">
+              <div className="relative flex-none w-[100px] md:w-[120px] pt-4">
                 <span className="absolute top-0 left-2 text-[8px] uppercase tracking-wider font-bold bg-primary/70 text-white px-2 py-0.5 rounded-full border border-white/20 whitespace-nowrap">
                   {c.compositeIndex}
                 </span>
@@ -93,8 +93,8 @@ export default function Hero() {
               </div>
               {/* Ayırıcı */}
               <div className="w-px self-stretch bg-white/25 rounded-full flex-none" />
-              {/* 4 alt indeks — sağ */}
-              <div className="grid grid-cols-2 gap-2 flex-1">
+              {/* 4 alt indeks — sağ, tek satır */}
+              <div className="grid grid-cols-4 gap-2 flex-1 content-center">
                 <KpiTile label="EDI" subtitle={c.kpi.edi.subtitle} value="0.44" delta="−0.9%" positive compact title={c.kpi.edi.title} desc={c.kpi.edi.desc} />
                 <KpiTile label="TDI" subtitle={c.kpi.tdi.subtitle} value="0.51" delta="+3.2%" compact title={c.kpi.tdi.title} desc={c.kpi.tdi.desc} />
                 <KpiTile label="CSI" subtitle={c.kpi.csi.subtitle} value="0.29" delta="+1.8%" compact title={c.kpi.csi.title} desc={c.kpi.csi.desc} />
@@ -117,7 +117,7 @@ function KpiTile({
   const deltaColor = positive ? "text-success" : warn ? "text-warning" : "text-inverse-primary";
   return (
     <div
-      className={`group relative rounded-xl bg-white/10 backdrop-blur-md border border-white/15 cursor-help transition hover:bg-white/15 hover:border-white/30 ${compact ? "px-3 py-2" : "px-4 py-3"}`}
+      className={`group relative rounded-xl bg-white/10 backdrop-blur-md border border-white/15 cursor-help transition hover:bg-white/15 hover:border-white/30 ${compact ? "px-2.5 py-1.5" : "px-4 py-3"}`}
       tabIndex={0}
       aria-label={`${label} — ${title}: ${desc}`}
     >
