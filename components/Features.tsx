@@ -8,9 +8,10 @@ export default function Features() {
             Sadece veri değil, <span className="text-primary">uygulanabilir strateji</span>.
           </h2>
           <p className="text-on-surface-variant text-lg">
-            Dört ana modül; her biri diğerini besler ve şirketinizin dijital ikizi üzerinde birlikte çalışır.
+            Dört ana modül, 6 temel veri kaynağından 100'ün üzerinde sinyal alınır ve şirketinize etkisi hesaplanır.
             <br className="hidden md:block" />
-            Genel piyasa yorumları değil, <strong className="text-on-surface">şirketinize özel sayısal veriler</strong> üretiriz.
+            Genel piyasa yorumları değil, şirkete özel veriler üretilir. Şirket karar vericileri bu özel veriler ile{" "}
+            <strong className="text-on-surface">risk veya fırsat sinyallerini görür, rekabet stratejilerine yön verirler.</strong>
           </p>
         </div>
 
@@ -21,10 +22,11 @@ export default function Features() {
               <FeatureIconCircle color="primary">
                 <PathIcon />
               </FeatureIconCircle>
-              <h3 className="text-2xl md:text-3xl font-extrabold mt-6 mb-3">Yayılım Haritası</h3>
+              <h3 className="text-2xl md:text-3xl font-extrabold mt-6 mb-3">Veri Sinyalleri ve Yayılım Haritası</h3>
               <p className="text-on-surface-variant max-w-lg leading-relaxed">
-                Bir sinyal geldiğinde etkinin firmanızın hangi bileşenlerine, hangi büyüklükte, hangi zincir üzerinden ulaştığını görün.
-                Her düğüm ve kenar izlenebilirdir.
+                Yurt içinde veya yurt dışında firmanıza etki edebilecek herhangi bir sinyal geldiğinde, firmanızla ilgili hangi
+                bileşenlere, hangi büyüklükte, hangi zincir üzerinden ulaştığı görülebilir. Her bir düğüm (etki odağı) ve
+                kenar (etki derecesi) izlenebilir.
               </p>
             </div>
             <FlowGraphic />
@@ -35,9 +37,9 @@ export default function Features() {
             <FeatureIconCircle color="secondary">
               <InsightIcon />
             </FeatureIconCircle>
-            <h3 className="text-xl font-bold mt-6 mb-3">Maruziyet Detayı</h3>
+            <h3 className="text-xl font-bold mt-6 mb-3">Firmaya Etki ve Derecesi</h3>
             <p className="text-on-surface-variant text-sm leading-relaxed">
-              Gelir, maliyet, tedarik, talep, rekabet ve regülasyon etkileri ayrıştırılmış — birbirini götürmez, her kanal görünür.
+              Maliyet, Gelir, Talep ve Pazar, Teknoloji, Rekabet ve Regülasyon etkileri; pozitif ve negatif olarak her bir etki derecesi ölçüsünde görülür.
             </p>
             <ExposureBars />
           </div>
@@ -47,9 +49,9 @@ export default function Features() {
             <FeatureIconCircle color="warning">
               <BrainIcon />
             </FeatureIconCircle>
-            <h3 className="text-xl font-bold mt-6 mb-3">Strateji Odası</h3>
+            <h3 className="text-xl font-bold mt-6 mb-3">Senaryolar & Strateji</h3>
             <p className="text-on-surface-variant text-sm leading-relaxed">
-              Yapay zekâ destekli aksiyon önerileri, uygulamadan önce grafta simüle edilir. Etki azaltma oranı sayısal olarak doğrulanır.
+              O ana kadar gelişmeler ışığında muhtemel senaryolar tahmin edilebilir. Yapay zekâ destekli aksiyon önerileri uygulamadan önce grafta simüle edilir; etki azaltma oranı sayısal olarak doğrulanır.
             </p>
             <StrategyTags />
           </div>
@@ -60,16 +62,41 @@ export default function Features() {
               <FeatureIconCircle color="light">
                 <ShieldIcon />
               </FeatureIconCircle>
-              <h3 className="text-2xl md:text-3xl font-extrabold mt-6 mb-3">IP & Rakip İzleme</h3>
+              <h3 className="text-2xl md:text-3xl font-extrabold mt-6 mb-3">Rakip İzleme ve IP</h3>
               <p className="text-outline-variant leading-relaxed">
-                Patent, marka, tasarım ve halka arz sinyallerini rakip firma listenizle kesiştirir. Teknolojide geri kalma riskini
-                somut sayılara döker.
+                Rakipleriniz veya sektörünüzdeki gelişmeler, yeni ürün ve teknoloji lansmanları, halka açılmalar,
+                patent, marka ve tasarım başvuruları izlenir. Muhtemel tehdit ve fırsatlar sayısallaştırılarak sunulur.
               </p>
             </div>
             <div className="hidden lg:block relative w-72 h-56 shrink-0">
               <RadarGraphic />
             </div>
           </div>
+        </div>
+
+        {/* What-if soru bloğu */}
+        <div className="mt-14 rounded-3xl border border-primary/15 bg-gradient-to-br from-primary/5 to-secondary/5 p-8 md:p-10">
+          <div className="mb-6">
+            <span className="chip">Kendinize Sorun</span>
+            <h3 className="text-xl md:text-2xl font-extrabold mt-4 tracking-tight">
+              VANDAQ-X bu soruların hepsini <span className="text-primary">sayısal olarak yanıtlar</span>
+            </h3>
+          </div>
+          <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            {[
+              "Dolar %10 yükselirse kârlılığım nasıl etkilenir? Üretim maliyetim ve ihracat artışım ne olur?",
+              "Enerji fiyatları artarsa hangi ürün grubum daha fazla etkilenir?",
+              "Yeni bir AB düzenlemesi ihracatımı ve maliyetimi nasıl değiştirir?",
+              "Made in EU ile Çinli tedarikçim değişir mi? Tedarikçimi değiştirirsem riskim ne kadar azalır?",
+              "Hürmüz Boğazı krizi tedarik zincirim etkiler mi?",
+              "Rakibimin yeni patent başvurusu hangi ürün grubumu etkileyebilir?",
+            ].map((q) => (
+              <li key={q} className="flex items-start gap-3 bg-white/70 rounded-2xl px-4 py-3 border border-border-subtle text-sm text-on-surface leading-relaxed">
+                <span className="shrink-0 mt-0.5 w-5 h-5 rounded-full bg-primary/10 text-primary grid place-items-center text-xs font-bold">?</span>
+                {q}
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>
@@ -147,10 +174,10 @@ function FlowGraphic() {
         strokeLinecap="round"
       />
       {[
-        { x: 20, y: 140, label: "Sinyal" },
-        { x: 220, y: 80, label: "Maliyet" },
-        { x: 380, y: 55, label: "Gelir" },
-        { x: 620, y: 60, label: "CVI" },
+        { x: 20, y: 140, label: "İran-US Krizi" },
+        { x: 220, y: 80, label: "Hürmüz Boğazı" },
+        { x: 380, y: 55, label: "Tedarik Zinciri" },
+        { x: 620, y: 60, label: "Maliyet" },
       ].map((n) => (
         <g key={n.label}>
           <circle cx={n.x} cy={n.y} r="7" fill="#fff" stroke="#2c4cd7" strokeWidth="2" />
@@ -165,10 +192,12 @@ function FlowGraphic() {
 
 function ExposureBars() {
   const rows = [
-    { label: "Gelir", pos: 62, neg: 0 },
     { label: "Maliyet", pos: 0, neg: 41 },
-    { label: "Tedarik", pos: 12, neg: 22 },
+    { label: "Gelir", pos: 62, neg: 0 },
+    { label: "Talep/Pazar", pos: 18, neg: 12 },
+    { label: "Teknoloji", pos: 0, neg: 14 },
     { label: "Rekabet", pos: 0, neg: 18 },
+    { label: "Regülasyon", pos: 0, neg: 29 },
   ];
   return (
     <div className="mt-6 space-y-2.5">
@@ -190,9 +219,9 @@ function ExposureBars() {
 
 function StrategyTags() {
   const tags = [
-    { l: "Hedge oranını %35'e yükselt", eff: "−12%" },
-    { l: "Karbon yoğun tedarikçiyi değiştir", eff: "−18%" },
-    { l: "AB pazarında fiyat rejyustmanı", eff: "−9%" },
+    { l: "Döviz artışı hızlanıyor → alacaklarını dövize endeksle", eff: "−14%" },
+    { l: "CBAM etkisi artıyor → yeşil kredi ile yatırım yap", eff: "−18%" },
+    { l: "Made in Europe geliyor → AB müşteri görüşmelerini artır", eff: "−9%" },
   ];
   return (
     <ul className="mt-6 space-y-2.5">
@@ -210,6 +239,12 @@ function StrategyTags() {
 }
 
 function RadarGraphic() {
+  const signals = [
+    { cx: 150, cy: 60, r: 5, c: "#22C55E", label: "Rakip patent" },
+    { cx: 90, cy: 130, r: 4, c: "#F97316", label: "Halka açılıyor" },
+    { cx: 170, cy: 130, r: 6, c: "#E24B4A", label: "Yeni rakip giriyor" },
+    { cx: 60, cy: 70, r: 3, c: "#b9c3ff", label: "Marka tescili" },
+  ];
   return (
     <svg viewBox="0 0 240 200" className="w-full h-full" aria-hidden>
       {[40, 70, 100].map((r) => (
@@ -217,15 +252,13 @@ function RadarGraphic() {
       ))}
       <line x1="120" y1="0" x2="120" y2="200" stroke="#ffffff" strokeOpacity="0.15" />
       <line x1="0" y1="100" x2="240" y2="100" stroke="#ffffff" strokeOpacity="0.15" />
-      {[
-        { cx: 150, cy: 60, r: 5, c: "#22C55E" },
-        { cx: 90, cy: 130, r: 4, c: "#F97316" },
-        { cx: 170, cy: 130, r: 6, c: "#E24B4A" },
-        { cx: 60, cy: 70, r: 3, c: "#b9c3ff" },
-      ].map((d, i) => (
+      {signals.map((d, i) => (
         <g key={i}>
           <circle cx={d.cx} cy={d.cy} r={d.r + 6} fill={d.c} fillOpacity="0.18" />
           <circle cx={d.cx} cy={d.cy} r={d.r} fill={d.c} />
+          <text x={d.cx + d.r + 8} y={d.cy + 4} fontSize="8" fill="#ffffff" fillOpacity="0.75">
+            {d.label}
+          </text>
         </g>
       ))}
     </svg>

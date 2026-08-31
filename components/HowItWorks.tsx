@@ -1,23 +1,23 @@
 const steps = [
   {
     n: "01",
-    title: "Kurumsal Dijital İkizinizi Oluşturun",
-    desc: "İhracat oranı, döviz pozisyonu, kritik hammaddeler, rakipler — band bazlı, hassas veri istenmez. Sistem, firma DNA'nızı çıkarır.",
+    title: "Firmanızın Temel Yapısı ve Risk Alanlarını Belirleyin",
+    desc: "Firmanız için önemli olabilecek dünyadaki gelişmeleri değerlendirebilmek için sır olmayan bilgiler, izlenmesi ve değerlendirilmesi elzem olan veriler ve sinyaller belirlenir.",
   },
   {
     n: "02",
-    title: "Sinyaller Sürekli Akar",
-    desc: "TCMB, EIA, ECB, EPO, TÜRKPATENT ve haber akışları 7/24 toplanır ve heterojen olay grafında normalize edilir.",
+    title: "Veri Sinyalleri Sürekli Akar",
+    desc: "Merkez bankaları ve kurlar, enerji ajansı verileri, borsalar, emtia fiyatları, ekonomik haber kanalları, regülasyon ve düzenlemeler, patent ve marka ofisleri, siyasi olay ve kararlar olmak üzere 100'den fazla veri sinyali 7/24 toplanır ve heterojen olay olarak sayısallaştırılır.",
   },
   {
     n: "03",
-    title: "Etki Firmanıza Göre Hesaplanır",
-    desc: "Wₙ = Wₙ₋₁ × kₙ formülü ile zincirleme etkiler yayılır. Her sinyal, sizin katsayılarınıza göre farklı yön ve büyüklük üretir.",
+    title: "Her Veri Sinyalinin Firmaya Göre Etkisi Hesaplanır",
+    desc: "VANDAQ-X sisteminin can alıcı yanlarından biri olan ve sistem mantığı patent başvurusu ile korunan formüller ile zincirleme etkiler hesaplanır. Her sinyalin firmaya göre farklı pozitif veya negatif etkisi ile etki derecesi sayısallaştırılır ve riskler belirlenir.",
   },
   {
     n: "04",
-    title: "Strateji Önerisi + Simülasyon",
-    desc: "Kritik eşik aşılırsa AI aksiyon önerir; grafta simüle edilir. \"Bu strateji CVI'ı %28 düşürür\" gibi somut sonuç verilir.",
+    title: "Senaryolar ve Strateji Önerisi",
+    desc: "Firma için toplanan veriler ile muhtemel senaryolar üretilebilir; kritik eşik aşılırsa yapay zeka destekli öneriler ve simülasyonlar yapılır. \"Bu strateji maliyet etkisini %28 düşürür\" gibi somut sonuçlar üretilebilir.",
   },
 ];
 
@@ -52,21 +52,35 @@ export default function HowItWorks() {
           ))}
         </div>
 
-        <div className="mt-14 grid grid-cols-2 md:grid-cols-5 gap-4">
-          {[
-            { l: "CVI", d: "Kurumsal Kırılganlık" },
-            { l: "EDI", d: "Ekonomik Bağımlılık" },
-            { l: "TDI", d: "Teknoloji Bağımlılık" },
-            { l: "CSI", d: "İklim Duyarlılık" },
-            { l: "GRI", d: "Jeopolitik Risk" },
-          ].map((i) => (
-            <div key={i.l} className="rounded-2xl p-5 bg-app-bg border border-border-subtle text-center">
-              <div className="text-2xl font-black text-primary">{i.l}</div>
+        <div className="mt-14 flex flex-col gap-3">
+          {/* CVI — Bileşik İndeks */}
+          <div className="relative pt-3">
+            <span className="absolute top-0 left-3 text-[10px] uppercase tracking-[0.14em] font-bold bg-primary text-white px-2.5 py-0.5 rounded-full">
+              Bileşik İndeks
+            </span>
+            <div className="rounded-2xl p-5 bg-primary/5 border-2 border-primary/30 text-center">
+              <div className="text-2xl font-black text-primary">CVI İndeksi</div>
               <div className="text-[11px] uppercase tracking-[0.14em] text-on-surface-variant mt-1">
-                {i.d}
+                Kurumsal Kırılganlık — EDI + TDI + CSI + GRI ağırlıklı ortalaması
               </div>
             </div>
-          ))}
+          </div>
+          {/* 4 alt indeks */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {[
+              { l: "EDI İndeksi", d: "Ekonomik Bağımlılık" },
+              { l: "TDI İndeksi", d: "Teknoloji Bağımlılık" },
+              { l: "CSI İndeksi", d: "İklim Duyarlılık" },
+              { l: "GRI İndeksi", d: "Jeopolitik Risk" },
+            ].map((i) => (
+              <div key={i.l} className="rounded-2xl p-5 bg-app-bg border border-border-subtle text-center">
+                <div className="text-xl font-black text-primary">{i.l}</div>
+                <div className="text-[11px] uppercase tracking-[0.14em] text-on-surface-variant mt-1">
+                  {i.d}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
