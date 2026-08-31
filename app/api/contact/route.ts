@@ -1,10 +1,15 @@
 import { NextResponse } from "next/server";
-import { Resend } from "resend";
-import { getServerSupabase } from "@/lib/supabase";
 
 export const runtime = "nodejs";
 
+const BREVO_API = "https://api.brevo.com/v3/smtp/email";
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+const DEFAULT_TO = [
+  "abone2026hasan@gmail.com",
+  "hasan.demirkiran@kordinat.com.tr",
+  "emir.demirkiran@kordinat.com.tr",
+];
 
 type Body = {
   name?: string;
@@ -42,107 +47,76 @@ export async function POST(req: Request) {
     null;
   const userAgent = req.headers.get("user-agent") || null;
 
-  // 1) Persist to Supabase (optional — no-op if env not set)
-  const supabase = getServerSupabase();
-  if (supabase) {
-    const { error } = await supabase.from("contact_submissions").insert({
-      name,
-      email,
-      company: company || null,
-      subject,
-      message,
-      ip,
-      user_agent: userAgent,
-    });
-    if (error) {
-      console.error("supabase insert error", error);
-      // don't fail the request — still try email
-    }
-  }
-
-  // 2) Email notification via Resend
-  // onboarding@resend.dev, doğrulama gerektirmeyen ve her zaman iletim garantisi
-  // olan Resend'in ortak test göndericisidir. Domain doğrulaması tamamlandığında
-  // env üzerinden CONTACT_FROM_EMAIL değiştirilebilir.
-  const DEFAULT_TO = [
-    "abone2026hasan@gmail.com",
-    "hasan.demirkiran@kordinat.com.tr",
-    "emir.demirkiran@kordinat.com.tr",
-  ];
-  const DEFAULT_FROM = "VANDAQ <onboarding@resend.dev>";
-
-  const resendKey = process.env.RESEND_API_KEY;
+  const apiKey = process.env.BREVO_API_KEY;
   const toEnv = process.env.CONTACT_TO_EMAIL;
-  const from = process.env.CONTACT_FROM_EMAIL || DEFAULT_FROM;
+  const senderEmail = process.env.CONTACT_FROM_EMAIL || "bilgi@vandaq.com";
+  const senderName = process.env.CONTACT_FROM_NAME || "VANDAQ";
 
   let adminSent = false;
   let userAckSent = false;
   let emailError: string | null = null;
 
-  if (!resendKey) {
-    emailError = "RESEND_API_KEY tanımlı değil";
+  if (!apiKey) {
+    emailError = "BREVO_API_KEY tanımlı değil";
   } else {
-    const to = (toEnv || "")
+    const toList = (toEnv || "")
       .split(",")
       .map((s) => s.trim())
       .filter((s) => s.length > 0);
-    if (to.length === 0) to.push(...DEFAULT_TO);
-    try {
-      const resend = new Resend(resendKey);
-      // Admin bildirimi
-      const adminResp = await resend.emails.send({
-        from,
-        to,
-        replyTo: email,
-        subject: `[vandaq.com] ${subject} — ${company || name}`,
-        html: renderAdminEmail({ name, email, company, subject, message, ip, userAgent }),
-      });
-      if (adminResp.error) {
-        emailError = adminResp.error.message || "Resend admin bildirimi reddetti";
-        console.error("resend admin error", adminResp.error);
-      } else {
-        adminSent = true;
-      }
+    if (toList.length === 0) toList.push(...DEFAULT_TO);
 
-      // Kullanıcı teşekkür maili (admin başarılıysa)
-      if (adminSent) {
-        const userResp = await resend.emails.send({
-          from,
-          to: [email],
-          subject: "Talebiniz bize ulaştı — VANDAQ",
-          html: renderUserAck({ name, subject }),
-        });
-        if (userResp.error) {
-          console.error("resend user ack error", userResp.error);
-        } else {
-          userAckSent = true;
-        }
-      }
+    const sender = { name: senderName, email: senderEmail };
+
+    try {
+      // Admin bildirimi
+      await brevoSend(apiKey, {
+        sender,
+        to: toList.map((e) => ({ email: e })),
+        replyTo: { email },
+        subject: `[vandaq.com] ${subject} — ${company || name}`,
+        htmlContent: renderAdminEmail({ name, email, company, subject, message, ip, userAgent }),
+      });
+      adminSent = true;
+
+      // Kullanıcı teşekkür maili
+      await brevoSend(apiKey, {
+        sender,
+        to: [{ email, name }],
+        subject: "Talebiniz bize ulaştı — VANDAQ",
+        htmlContent: renderUserAck({ name, subject }),
+      });
+      userAckSent = true;
     } catch (err) {
-      emailError = err instanceof Error ? err.message : "Bilinmeyen Resend hatası";
-      console.error("resend exception", err);
+      emailError = err instanceof Error ? err.message : "Bilinmeyen Brevo hatası";
+      console.error("brevo error", err);
     }
   }
 
-  return NextResponse.json({
-    ok: true,
-    adminSent,
-    userAckSent,
-    emailError,
+  return NextResponse.json({ ok: true, adminSent, userAckSent, emailError });
+}
+
+async function brevoSend(apiKey: string, payload: object) {
+  const res = await fetch(BREVO_API, {
+    method: "POST",
+    headers: {
+      "api-key": apiKey,
+      "content-type": "application/json",
+      accept: "application/json",
+    },
+    body: JSON.stringify(payload),
   });
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({})) as { message?: string };
+    throw new Error(err.message || `Brevo HTTP ${res.status}`);
+  }
 }
 
 const esc = (s: string) =>
   s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]!));
 
 function renderAdminEmail(d: {
-  name: string;
-  email: string;
-  company: string;
-  subject: string;
-  message: string;
-  ip: string | null;
-  userAgent: string | null;
+  name: string; email: string; company: string; subject: string;
+  message: string; ip: string | null; userAgent: string | null;
 }) {
   return `
     <div style="font-family:Inter,system-ui,sans-serif;max-width:560px;margin:0 auto;padding:24px;color:#081b39">
