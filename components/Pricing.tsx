@@ -2,58 +2,97 @@ const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "https://vandaq-x.com";
 
 const plans = [
   {
-    name: "Bireysel",
-    price: "750",
-    period: "TL/ay",
+    name: "Başlangıç",
+    price: "95",
+    period: "Euro/ay",
+    badge: undefined,
     features: [
-      "1 firma dijital ikizi",
-      "Temel 5 kırılganlık indeksi",
-      "TCMB döviz + emtia akışı",
-      "Günlük özet raporu",
-      "E-posta bildirim",
+      "Kurumsal kırılganlık indeksi (CVI)",
+      "+4 Temel kırılganlık indeksi",
+      "Maliyet Etkisi izlenmesi",
+      "Gelir Etkisi izlenmesi",
+      "Talep Etkisi izlenmesi",
+      "TCMB döviz + emtia sinyal akışları",
+      "3 Kritik olay grubu sinyalinin anında bildirimi",
+      "Haftalık Rapor",
+      "E-Posta bildirimi",
     ],
     cta: "Hemen Başla",
     highlight: false,
   },
   {
-    name: "Kurumsal · Tek Kişi",
-    price: "1.550",
-    period: "TL/ay",
+    name: "Profesyonel",
+    price: "175",
+    period: "Euro/ay",
+    badge: undefined,
     features: [
-      "Tüm Bireysel özellikler",
-      "Maruziyet detayı (Gelir/Maliyet)",
-      "Yayılım haritası",
-      "Strateji odası",
-      "PDF raporlar",
-    ],
-    cta: "Hemen Başla",
-    highlight: false,
-  },
-  {
-    name: "Kurumsal · 3 Kullanıcı",
-    price: "2.250",
-    period: "TL/ay",
-    badge: "Popüler",
-    features: [
-      "3 eş zamanlı oturum",
-      "IP izleme radarı",
-      "Senaryo odası (what-if)",
-      "AI strateji önerileri",
-      "Özel müşteri temsilcisi",
+      "Kurumsal kırılganlık indeksi (CVI)",
+      "+4 Temel kırılganlık indeksi",
+      "Maliyet Etkisi izlenmesi",
+      "Gelir Etkisi izlenmesi",
+      "Jeopolitik Etkisi izlenmesi",
+      "Tedarik Etkisi izlenmesi",
+      "Rekabet ve IP etkisi izlenmesi",
+      "Regülasyon etkisi izlenmesi",
+      "TCMB döviz + emtia sinyal akışları",
+      "Tüm diğer sinyal akışlarının izlenmesi",
+      "9 Kritik olay grubunun sinyalinin anında bildirimi",
+      "Senaryo ve Strateji üretimi",
+      "Haftalık Rapor",
+      "PDF Raporu",
+      "E-Posta bildirimi",
     ],
     cta: "15 Gün Ücretsiz Dene",
     highlight: true,
   },
   {
-    name: "Grup Şirketi",
-    price: "7.500",
-    period: "TL/ay",
+    name: "Profesyonel + Ek Kullanıcı",
+    price: "175",
+    priceSub: "+ 35 Euro/kullanıcı",
+    period: "Euro/ay",
+    badge: undefined,
     features: [
-      "Sınırsız kullanıcı",
-      "Çok firma yönetimi",
-      "ERP/API entegrasyonu",
-      "Konsolide grup raporu",
-      "SSO / SLA",
+      "Kurumsal kırılganlık indeksi (CVI)",
+      "+4 Temel kırılganlık indeksi",
+      "Maliyet Etkisi izlenmesi",
+      "Gelir Etkisi izlenmesi",
+      "Jeopolitik Etkisi izlenmesi",
+      "Tedarik Etkisi izlenmesi",
+      "Rekabet ve IP etkisi izlenmesi",
+      "Regülasyon etkisi izlenmesi",
+      "TCMB döviz + emtia sinyal akışları",
+      "Tüm diğer sinyal akışlarının izlenmesi",
+      "9 Kritik olay grubunun sinyalinin anında bildirimi",
+      "Senaryo ve Strateji üretimi",
+      "Haftalık Rapor",
+      "PDF Raporu",
+      "E-Posta bildirimi",
+    ],
+    cta: "İletişime Geç",
+    highlight: false,
+  },
+  {
+    name: "Grup Şirketleri",
+    price: "175",
+    priceSub: "+ 35 €/kullanıcı × 0,35 ek şirket",
+    period: "Euro/ay",
+    badge: undefined,
+    features: [
+      "Kurumsal kırılganlık indeksi (CVI)",
+      "+4 Temel kırılganlık indeksi",
+      "Maliyet Etkisi izlenmesi",
+      "Gelir Etkisi izlenmesi",
+      "Jeopolitik Etkisi izlenmesi",
+      "Tedarik Etkisi izlenmesi",
+      "Rekabet ve IP etkisi izlenmesi",
+      "Regülasyon etkisi izlenmesi",
+      "TCMB döviz + emtia sinyal akışları",
+      "Tüm diğer sinyal akışlarının izlenmesi",
+      "9 Kritik olay grubunun sinyalinin anında bildirimi",
+      "Senaryo ve Strateji üretimi",
+      "Haftalık Rapor",
+      "PDF Raporu",
+      "E-Posta bildirimi",
     ],
     cta: "İletişime Geç",
     highlight: false,
@@ -84,21 +123,24 @@ export default function Pricing() {
                   : "bg-white border border-border-subtle hover:shadow-xl hover:-translate-y-1"
               }`}
             >
-              {p.badge && (
-                <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-white text-primary text-[11px] uppercase tracking-widest font-bold px-3 py-1 rounded-full border border-primary/20 shadow-sm">
-                  {p.badge}
-                </span>
-              )}
               <div>
                 <div className={`text-[11px] uppercase tracking-[0.15em] font-semibold ${p.highlight ? "text-white/80" : "text-on-surface-variant"}`}>
                   {p.name}
                 </div>
-                <div className="flex items-baseline gap-1 mt-4 mb-6">
-                  <span className="text-4xl md:text-5xl font-black">{p.price}</span>
-                  <span className={`text-sm font-semibold ${p.highlight ? "text-white/80" : "text-on-surface-variant"}`}>
-                    {p.period}
-                  </span>
+                <div className="mt-4 mb-2">
+                  <div className="flex items-baseline gap-1">
+                    <span className="text-4xl md:text-5xl font-black">{p.price}</span>
+                    <span className={`text-sm font-semibold ${p.highlight ? "text-white/80" : "text-on-surface-variant"}`}>
+                      {p.period}
+                    </span>
+                  </div>
+                  {"priceSub" in p && p.priceSub && (
+                    <div className={`text-[11px] mt-1 leading-tight ${p.highlight ? "text-white/70" : "text-on-surface-variant"}`}>
+                      {p.priceSub}
+                    </div>
+                  )}
                 </div>
+                <div className="mb-6" />
                 <ul className={`space-y-3 text-sm ${p.highlight ? "text-white/90" : "text-on-surface"}`}>
                   {p.features.map((f) => (
                     <li key={f} className="flex items-start gap-2">
@@ -109,9 +151,9 @@ export default function Pricing() {
                 </ul>
               </div>
               <a
-                href={p.name === "Grup Şirketi" ? "#iletisim" : APP_URL}
-                target={p.name === "Grup Şirketi" ? undefined : "_blank"}
-                rel={p.name === "Grup Şirketi" ? undefined : "noopener noreferrer"}
+                href={p.cta === "İletişime Geç" ? "#iletisim" : APP_URL}
+                target={p.cta === "İletişime Geç" ? undefined : "_blank"}
+                rel={p.cta === "İletişime Geç" ? undefined : "noopener noreferrer"}
                 className={`mt-10 text-center py-3.5 rounded-2xl font-semibold transition-all ${
                   p.highlight
                     ? "bg-white text-primary hover:shadow-xl"
