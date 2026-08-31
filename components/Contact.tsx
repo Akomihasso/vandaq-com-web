@@ -49,11 +49,10 @@ export default function Contact() {
             <div>
               <span className="chip">İletişim</span>
               <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mt-4">
-                Firmanıza özel bir <span className="text-primary">demo</span> ayarlayalım
+                <span className="text-primary">15 günlük ücretsiz</span> kullanımı deneyin
               </h2>
               <p className="text-on-surface-variant text-lg mt-4">
-                Bize firmanızın operasyonel yapısını kısaca anlatın; 24 saat içinde firmaya özel
-                dijital ikiz demosuyla dönüş yapalım.
+                Firmanıza özel uygulamalar için bizimle iletişime geçiniz. En kısa sürede dönüş yapacağız.
               </p>
             </div>
 

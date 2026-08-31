@@ -6,8 +6,8 @@ import { useEffect, useState } from "react";
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "https://vandaq-x.com";
 
 const links = [
-  { href: "#izleme", label: "İzleme" },
-  { href: "#ozellikler", label: "Özellikler" },
+  { href: "#izleme", label: "Global İzleme" },
+  { href: "#ozellikler", label: "Teknolojik Üstünlük" },
   { href: "#nasil-calisir", label: "Nasıl Çalışır" },
   { href: "#fiyatlandirma", label: "Fiyatlandırma" },
   { href: "#iletisim", label: "İletişim" },

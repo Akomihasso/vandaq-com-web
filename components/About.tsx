@@ -6,37 +6,32 @@ export default function About() {
           <div className="space-y-6">
             <span className="chip">VANDAQ Nedir?</span>
             <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight">
-              Sektör yorumu değil, <span className="text-primary">firma-özel matematik</span>.
+              Sektör yorumu değil, <span className="text-primary">firmaya özel etki ölçümü</span>.
             </h2>
             <p className="text-lg text-on-surface-variant leading-relaxed">
-              VANDAQ, modern işletmeler için geliştirilmiş bir <strong>Kurumsal Dijital İkiz</strong> ve
-              ekonomik strateji platformudur. Bloomberg, Reuters ve Palantir sektör düzeyinde
-              analiz üretir; VANDAQ, aynı sinyalin <em>sizin</em> ihracat oranınıza, döviz pozisyonunuza ve
-              karbon yoğunluğunuza göre <em>gerçek etkisini</em> hesaplar.
+              VANDAQ, global rekabet ortamında yurt içinde ve yurt dışında gelişen olayların firmanın rekabetine
+              etki derecesini ölçmek için 100&apos;den fazla veri kaynağını takip eden, firmaya pozitif ve
+              negatif, doğrudan veya dolaylı etkisini hesaplayan bir firma dijital ikiz projesidir.
             </p>
             <p className="text-on-surface-variant leading-relaxed">
-              VANDAQ, dünyada ilk ve tek olan patentli <strong className="text-on-surface">VANDAQ-X</strong> projesinin yürütücüsüdür;
-              6769 Sayılı SMK ve EPC kapsamında patent süreci devam etmektedir.
+              Tüm dünyada yapılan genel ekonomik, sektörel veya belli bir bölgeye özgü tahminlerden öte
+              firmaya özel etki derecesi ölçülmektedir. Firma, bu sayede piyasadan çok önce bazı etki
+              sinyallerini alıp rekabet stratejisini geliştirmekte, risklerden korunmakta, fırsatlardan
+              faydalanabilmektedir.
             </p>
-            <div className="grid grid-cols-3 gap-6 pt-4 max-w-md">
-              <div>
-                <div className="text-3xl font-black text-primary">%37</div>
-                <div className="text-caption text-on-surface-variant mt-1">
-                  Sektör düzeyi tahminlerin firma düzeyinde sapması
-                </div>
-              </div>
-              <div>
-                <div className="text-3xl font-black text-primary">6</div>
-                <div className="text-caption text-on-surface-variant mt-1">
-                  Farklı sinyal ailesi, tek mekanizmada
-                </div>
-              </div>
-              <div>
-                <div className="text-3xl font-black text-primary">5</div>
-                <div className="text-caption text-on-surface-variant mt-1">
-                  Kırılganlık indeksi
-                </div>
-              </div>
+            <p className="text-on-surface-variant leading-relaxed">
+              VANDAQ, bilindiği kadarıyla dünyada ilk olan bu teknolojinin ilk piyasa uygulaması olan ve
+              sistemi ile yöntemi{" "}
+              <strong className="text-on-surface">patent hakları ile korunan VANDAQ-X</strong>{" "}
+              projesinin yürütücüsüdür.
+            </p>
+
+            {/* Sayısal özet */}
+            <div className="grid grid-cols-2 gap-4 pt-4">
+              <StatTile value="100+" label="Veri kaynağı" />
+              <StatTile value="6" label="Ana sinyal grubu" />
+              <StatTile value="6" label="Firmaya etki grubu" />
+              <StatTile value="4 + CVI" label="İndeks (bileşik + alt)" />
             </div>
           </div>
 
@@ -46,24 +41,24 @@ export default function About() {
               <div className="absolute -left-16 -top-16 w-56 h-56 rounded-full bg-secondary/30 blur-3xl" />
               <div className="relative">
                 <div className="text-white/60 text-xs uppercase tracking-[0.18em] mb-2">Teknolojimiz</div>
-                <h3 className="text-2xl font-extrabold mb-6">Kurumsal Dijital İkiz Motoru</h3>
+                <h3 className="text-2xl font-extrabold mb-6">Dijital İkiz Firma ile Rekabet İstihbaratı</h3>
 
                 <ul className="space-y-5">
                   <TechItem
                     title="Gerçek Zamanlı Yayılım"
-                    body="Heterojen olay grafı üzerinde Wₙ = Wₙ₋₁ × kₙ ile zincirleme etki hesaplanır."
+                    body="100'den fazla veri sinyali ile heterojen olaylarda zincirleme etki hesabı."
                   />
                   <TechItem
-                    title="Firma Bazında Kalibrasyon"
-                    body="Gerçekleşen vs. öngörülen etkiler karşılaştırılır; katsayılar firma özelinde öğrenir."
+                    title="Firma Bazında Etki ve Derecelendirme"
+                    body="Veri sinyallerinin firmadan firmaya değişen etkisinin hesaplanması ve firmaya özgü gerçeğe yakın etki şiddetinin tahmini."
                   />
                   <TechItem
-                    title="Simülasyon-Öncelikli Strateji"
-                    body="Her öneri, uygulanmadan grafta simüle edilir; etki azaltma oranı sayısal olarak verilir."
+                    title="Senaryo ve Strateji Üretimi"
+                    body="Gerçek veriler ile gerçeğe yakın senaryolar ve yapay zeka destekli strateji ve karar destek sistemi."
                   />
                   <TechItem
                     title="Hibrit Entegrasyon"
-                    body="TCMB, EIA, ECB, EPO, TÜRKPATENT; ERP (SAP, Logo) ve haber akışları API üzerinden bağlanır."
+                    body="Sadece para piyasaları, emtialar ve borsalar değil; jeopolitik gelişmeler, regülasyonlar, iklim ve tabiat olaylarının API bağlantıları ile anlık veri elde edilmesi ve hibrit olarak hesaba katılması."
                   />
                 </ul>
               </div>
@@ -72,6 +67,15 @@ export default function About() {
         </div>
       </div>
     </section>
+  );
+}
+
+function StatTile({ value, label }: { value: string; label: string }) {
+  return (
+    <div className="rounded-2xl p-5 bg-white border border-border-subtle">
+      <div className="text-2xl font-black text-primary">{value}</div>
+      <div className="text-caption text-on-surface-variant mt-1">{label}</div>
+    </div>
   );
 }
 

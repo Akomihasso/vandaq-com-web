@@ -33,8 +33,8 @@ export default function Footer() {
           <FooterCol
             title="Platform"
             links={[
-              { l: "İzleme", h: "#izleme" },
-              { l: "Özellikler", h: "#ozellikler" },
+              { l: "Global İzleme", h: "#izleme" },
+              { l: "Teknolojik Üstünlük", h: "#ozellikler" },
               { l: "Nasıl Çalışır", h: "#nasil-calisir" },
               { l: "Fiyatlandırma", h: "#fiyatlandirma" },
             ]}
